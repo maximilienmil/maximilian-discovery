@@ -101,10 +101,17 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
     entries = []
     cutoff = datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)
     try:
-        feed = feedparser.parse(
+        # Fetch with requests first — gives feedparser raw bytes and avoids lxml strictness
+        r = requests.get(
             url,
-            request_headers={"User-Agent": "Mozilla/5.0 (compatible; discovery-bot/1.0)"},
-            agent="discovery-bot",
+            headers={"User-Agent": "Mozilla/5.0 (compatible; Feedfetcher-Google/1.0)"},
+            timeout=15,
+            allow_redirects=True,
+        )
+        r.raise_for_status()
+        feed = feedparser.parse(
+            r.content,
+            response_headers={"content-type": r.headers.get("content-type", "application/rss+xml")},
         )
         if feed.bozo and not feed.entries:
             log_error(f"Feed parse error ({source_label}): {feed.bozo_exception}")
@@ -136,6 +143,10 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
                 "source_type": source_type,
                 "published": published.strftime("%Y-%m-%d") if published else "",
             })
+    except requests.HTTPError as e:
+        log_error(f"Feed HTTP error ({source_label}): {e}")
+    except requests.RequestException as e:
+        log_error(f"Feed request error ({source_label}): {e}")
     except Exception as e:
         log_error(f"Feed fetch error ({source_label}): {e}")
 

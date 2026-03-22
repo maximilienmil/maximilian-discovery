@@ -185,18 +185,18 @@ DISCOVERY_FEEDS = [
     #   Lenny's Podcast, AI & I
 
     # ── Selective — only best episodes surface (score 8+) ─────────────────────
-    ("https://feeds.simplecast.com/2l31uDMa", "podcast_selective"),          # HBR IdeaCast
-    ("https://feeds.feedburner.com/InsideTheStrategyRoom", "podcast_selective"),  # McKinsey Inside the Strategy Room
+    ("http://feeds.harvardbusiness.org/harvardbusiness/ideacast", "podcast_selective"),  # HBR IdeaCast
+    ("https://www.omnycontent.com/d/playlist/708664bd-6843-4623-8066-aede00ce0c8a/a7ee33f2-d500-4226-b99c-af04013945d6/36587f70-89f9-4631-ac19-af04013945e0/podcast.rss", "podcast_selective"),  # McKinsey Inside the Strategy Room
 
     # ── AI, alignment & technical — broad interest ─────────────────────────
     ("https://lexfridman.com/feed/podcast/", "podcast"),                     # Lex Fridman — AI researchers, scientists, philosophers
-    ("https://www.dwarkeshpatel.com/feed", "podcast"),                       # Dwarkesh Podcast — AI, history, big ideas
-    ("https://futureoflife.org/feed/podcast/", "podcast"),                   # Future of Life Institute — AI safety, existential risk
-    ("https://feeds.buzzsprout.com/1532789.rss", "podcast"),                 # Machine Learning Street Talk — technical ML
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCXl4i9dYBrFOabk0xGmbkRA", "podcast"),  # Dwarkesh Podcast (YouTube)
+    ("https://feeds.transistor.fm/future-of-life-institute-podcast-4e4d1fa5-a878-4cb2-91be-91c3ce266dfd", "podcast"),  # Future of Life Institute — AI safety, existential risk
+    ("https://anchor.fm/s/1e4a0eac/podcast/rss", "podcast"),                # Machine Learning Street Talk — technical ML
 
     # ── Ideas, cognition & knowledge ────────────────────────────────────────
-    ("https://feeds.simplecast.com/ej7TVvYv", "podcast"),                    # Sean Carroll's Mindscape — physics, philosophy, complexity
-    ("https://feeds.simplecast.com/dHoohVNH", "podcast"),                    # Conversations with Tyler — wide-ranging intellectual
+    ("https://rss.art19.com/sean-carrolls-mindscape", "podcast"),            # Sean Carroll's Mindscape — physics, philosophy, complexity
+    ("https://cowenconvos.libsyn.com/rss", "podcast"),                       # Conversations with Tyler — wide-ranging intellectual
     ("https://feeds.simplecast.com/wgl4xEgL", "podcast"),                    # EconTalk — economics, ideas, incentives
-    ("https://80000hours.org/podcast/feed.xml", "podcast"),                  # 80,000 Hours — AI safety, career impact, EA
+    ("https://feeds.transistor.fm/80000-hours-podcast", "podcast"),          # 80,000 Hours — AI safety, career impact, EA
 ]

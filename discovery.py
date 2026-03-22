@@ -99,9 +99,14 @@ def parse_date(entry) -> datetime | None:
     return None
 
 
+PODCAST_TYPES = ("podcast", "podcast_selective")
+LOOKBACK_DAYS_PODCAST = 30  # podcasts release infrequently; look back further
+
+
 def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
     entries = []
-    cutoff = datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)
+    days = LOOKBACK_DAYS_PODCAST if source_type in PODCAST_TYPES else LOOKBACK_DAYS
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
     try:
         # Try requests first (handles encoding better, avoids lxml strictness)
         feed = None
@@ -136,7 +141,9 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
             link = getattr(entry, "link", "").strip()
             if not link:
                 continue
-            if is_from_opml(link):
+            # Podcast episodes are intentionally from publishers already in the OPML
+            # (e.g. HBR, McKinsey) — skip the domain filter for podcast source types
+            if source_type not in PODCAST_TYPES and is_from_opml(link):
                 continue
 
             published = parse_date(entry)

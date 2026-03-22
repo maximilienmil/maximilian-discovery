@@ -62,6 +62,7 @@ Engineering blog post: high if introduces new technique, benchmark, or evaluatio
 News article: low unless it's a primary source event with no other access point
 Interview / transcript: medium-high if interviewee says something genuinely surprising
 Corporate report / NGO brief: almost always 1-2
+Podcast episode: score 7-10 only if the guest has genuine domain expertise AND the description or title signals a novel argument, finding, or framing — not just a career retrospective or general overview. Score 1-4 for vague interview titles, motivational episodes, or guests whose primary identity is "entrepreneur" or "thought leader" without specific domain. For McKinsey Inside the Strategy Room and HBR IdeaCast specifically, only score 8+ for episodes covering a specific strategic or management insight that is empirically grounded or structurally novel — skip CEO spotlights and general leadership pieces.
 
 ═══ TOPIC-SPECIFIC RULES ═══
 

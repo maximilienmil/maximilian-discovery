@@ -35,7 +35,9 @@ LOOKBACK_DAYS = 7
 MAX_PER_FEED = 12
 SCORE_THRESHOLD_HIGH = 8
 SCORE_THRESHOLD_MEDIUM = 5
-SCORE_THRESHOLD_TECH = 6   # minimum score for the Technical section
+SCORE_THRESHOLD_TECH = 6        # minimum score for the Technical section
+SCORE_THRESHOLD_PODCAST = 7     # minimum score for standard podcast episodes
+SCORE_THRESHOLD_PODCAST_SEL = 8 # minimum score for selective podcast shows
 
 
 # ── LOGGING ───────────────────────────────────────────────────────────────────
@@ -249,8 +251,10 @@ def score_all(entries: list[dict]) -> list[dict]:
 # ── DIGEST GENERATION ─────────────────────────────────────────────────────────
 
 def generate_digest(entries: list[dict], total_checked: int) -> str:
-    discovery = [e for e in entries if e.get("source_type") != "technical"]
-    technical = [e for e in entries if e.get("source_type") == "technical"]
+    podcasts = [e for e in entries if e.get("source_type") in ("podcast", "podcast_selective")]
+    rest = [e for e in entries if e.get("source_type") not in ("podcast", "podcast_selective")]
+    discovery = [e for e in rest if e.get("source_type") != "technical"]
+    technical = [e for e in rest if e.get("source_type") == "technical"]
 
     must_read = sorted(
         [e for e in discovery if e.get("score", 0) >= SCORE_THRESHOLD_HIGH],
@@ -264,15 +268,22 @@ def generate_digest(entries: list[dict], total_checked: int) -> str:
         [e for e in technical if e.get("score", 0) >= SCORE_THRESHOLD_TECH],
         key=lambda x: x.get("score", 0), reverse=True
     )
+    podcast_picks = sorted(
+        [e for e in podcasts if (
+            e.get("score", 0) >= SCORE_THRESHOLD_PODCAST_SEL if e.get("source_type") == "podcast_selective"
+            else e.get("score", 0) >= SCORE_THRESHOLD_PODCAST
+        )],
+        key=lambda x: x.get("score", 0), reverse=True
+    )
 
     ts = datetime.now(timezone.utc).strftime("%B %d, %Y · %H:%M UTC")
     lines = [
         f"# Discovery Digest — {ts}",
-        f"\n**{len(must_read)} must-read** · **{len(worth_look)} worth a look** · **{len(tech_picks)} technical** · {total_checked} items checked\n",
+        f"\n**{len(must_read)} must-read** · **{len(worth_look)} worth a look** · **{len(tech_picks)} technical** · **{len(podcast_picks)} podcast** · {total_checked} items checked\n",
         "---\n",
     ]
 
-    if not must_read and not worth_look and not tech_picks:
+    if not must_read and not worth_look and not tech_picks and not podcast_picks:
         lines.append("*No new high-signal items this cycle.*")
         return "\n".join(lines)
 
@@ -300,6 +311,14 @@ def generate_digest(entries: list[dict], total_checked: int) -> str:
                 lines.append(f"*{e['reason']}*")
             lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; {e.get('published', '')}</sub>\n")
 
+    if podcast_picks:
+        lines.append("## Podcast Episodes\n")
+        for e in podcast_picks[:10]:
+            lines.append(f"**[{e['title']}]({e['link']})** &nbsp;`{e.get('score')}/10`")
+            if e.get("reason"):
+                lines.append(f"*{e['reason']}*")
+            lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; {e.get('published', '')}</sub>\n")
+
     return "\n".join(lines)
 
 
@@ -312,8 +331,10 @@ def send_telegram(entries: list[dict], total_checked: int):
         print("Telegram not configured — skipping.")
         return
 
-    discovery = [e for e in entries if e.get("source_type") != "technical"]
-    technical = [e for e in entries if e.get("source_type") == "technical"]
+    podcasts = [e for e in entries if e.get("source_type") in ("podcast", "podcast_selective")]
+    rest = [e for e in entries if e.get("source_type") not in ("podcast", "podcast_selective")]
+    discovery = [e for e in rest if e.get("source_type") != "technical"]
+    technical = [e for e in rest if e.get("source_type") == "technical"]
 
     must_read = sorted(
         [e for e in discovery if e.get("score", 0) >= SCORE_THRESHOLD_HIGH],
@@ -327,10 +348,17 @@ def send_telegram(entries: list[dict], total_checked: int):
         [e for e in technical if e.get("score", 0) >= SCORE_THRESHOLD_TECH],
         key=lambda x: x.get("score", 0), reverse=True
     )
+    podcast_picks = sorted(
+        [e for e in podcasts if (
+            e.get("score", 0) >= SCORE_THRESHOLD_PODCAST_SEL if e.get("source_type") == "podcast_selective"
+            else e.get("score", 0) >= SCORE_THRESHOLD_PODCAST
+        )],
+        key=lambda x: x.get("score", 0), reverse=True
+    )
 
     ts = datetime.now(timezone.utc).strftime("%b %d · %H:%M UTC")
     parts = [f"<b>Discovery Digest — {ts}</b>"]
-    parts.append(f"<i>{len(must_read)} must-read · {len(worth_look)} worth a look · {len(tech_picks)} technical · {total_checked} checked</i>")
+    parts.append(f"<i>{len(must_read)} must-read · {len(worth_look)} worth a look · {len(tech_picks)} technical · {len(podcast_picks)} podcast · {total_checked} checked</i>")
 
     if must_read:
         parts.append("\n<b>Must Read</b>")
@@ -352,6 +380,15 @@ def send_telegram(entries: list[dict], total_checked: int):
         for e in tech_picks[:6]:
             title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
             parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
+
+    if podcast_picks:
+        parts.append("\n<b>Podcast Episodes</b>")
+        for e in podcast_picks[:5]:
+            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            reason = e.get("reason", "")[:120].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
+            if reason:
+                parts.append(f'  <i>{reason}</i>')
 
     msg = "\n".join(parts)
     if len(msg) > 4000:

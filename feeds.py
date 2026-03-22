@@ -3,8 +3,10 @@ All feed sources for the discovery engine.
 
 OPML_DOMAINS: domains already covered by Maximilian's NetNewsWire — articles from these are dropped.
 DISCOVERY_FEEDS: list of (url, source_type) tuples.
-  "technical" → arXiv, ML research blogs, journals → "Research & Technical" section
-  "discovery" → niche Substacks, think tanks, longform → main digest sections
+  "technical"          → arXiv, ML research blogs, journals → "Research & Technical" section
+  "discovery"          → niche Substacks, think tanks, longform → main digest sections
+  "podcast"            → podcast episodes, score threshold 7+ → "Podcast Episodes" section
+  "podcast_selective"  → curated shows where only the best episodes matter, score threshold 8+
 """
 
 # Domains from Subscriptions-iCloud.opml — dropped before scoring
@@ -171,4 +173,30 @@ DISCOVERY_FEEDS = [
     ("https://www.densediscovery.com/feed", "discovery"),
     ("https://mattersoftech.substack.com/feed", "discovery"),
     ("https://www.scopeofwork.net/rss/", "discovery"),
+
+
+    # ══ PODCASTS ══════════════════════════════════════════════════════════════
+    # Goes into "Podcast Episodes" section.
+    # "podcast"           → score threshold 7+ (surfaced if genuinely insightful)
+    # "podcast_selective" → score threshold 8+ (only best episodes from curated shows)
+    #
+    # NOT included (already in NetNewsWire or excluded by user preference):
+    #   Dan Koe's podcast, Sinead Bovell's I Got Questions, Hard Fork,
+    #   Lenny's Podcast, AI & I
+
+    # ── Selective — only best episodes surface (score 8+) ─────────────────────
+    ("https://feeds.simplecast.com/2l31uDMa", "podcast_selective"),          # HBR IdeaCast
+    ("https://feeds.feedburner.com/InsideTheStrategyRoom", "podcast_selective"),  # McKinsey Inside the Strategy Room
+
+    # ── AI, alignment & technical — broad interest ─────────────────────────
+    ("https://lexfridman.com/feed/podcast/", "podcast"),                     # Lex Fridman — AI researchers, scientists, philosophers
+    ("https://www.dwarkeshpatel.com/feed", "podcast"),                       # Dwarkesh Podcast — AI, history, big ideas
+    ("https://futureoflife.org/feed/podcast/", "podcast"),                   # Future of Life Institute — AI safety, existential risk
+    ("https://feeds.buzzsprout.com/1532789.rss", "podcast"),                 # Machine Learning Street Talk — technical ML
+
+    # ── Ideas, cognition & knowledge ────────────────────────────────────────
+    ("https://feeds.simplecast.com/ej7TVvYv", "podcast"),                    # Sean Carroll's Mindscape — physics, philosophy, complexity
+    ("https://feeds.simplecast.com/dHoohVNH", "podcast"),                    # Conversations with Tyler — wide-ranging intellectual
+    ("https://feeds.simplecast.com/wgl4xEgL", "podcast"),                    # EconTalk — economics, ideas, incentives
+    ("https://80000hours.org/podcast/feed.xml", "podcast"),                  # 80,000 Hours — AI safety, career impact, EA
 ]

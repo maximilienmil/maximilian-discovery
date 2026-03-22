@@ -73,6 +73,19 @@ DISCOVERY_FEEDS = [
     # ── Anthropic alignment (re-added per user request) ───────────────────────
     ("https://news.google.com/rss/search?q=site:alignment.anthropic.com&hl=en-US&gl=US&ceid=US:en", "technical"),
 
+    # ── Institutional AI research labs ────────────────────────────────────────
+    ("https://machinelearning.apple.com/rss.xml", "technical"),              # Apple ML Research — original research (not in OPML)
+    ("https://blog.ml.cmu.edu/feed/", "technical"),                          # CMU Machine Learning Blog
+    ("https://hai.stanford.edu/news/feed", "technical"),                     # Stanford HAI — AI + human-centered research
+    ("https://allenai.org/blog/feed", "technical"),                          # Allen Institute for AI (AI2) — NLP, reasoning, safety
+    ("https://research.ibm.com/blog/feed", "technical"),                     # IBM Research — quantum, foundation models, enterprise AI
+    ("https://humancompatible.ai/feed/", "technical"),                       # CHAI Berkeley (Stuart Russell) — value alignment
+    ("https://mila.quebec/en/feed/", "technical"),                           # Mila (Yoshua Bengio) — deep learning, causal reasoning
+    ("https://blog.eleutherai.org/rss/", "technical"),                       # EleutherAI — open-source LLMs, The Pile, evaluation harness
+    ("https://ai.meta.com/blog/rss/", "technical"),                          # Meta AI Research (FAIR) — Llama, SAM, DINO
+    ("https://mistral.ai/news/rss", "technical"),                            # Mistral AI — frontier open-weight models
+    ("https://www.together.ai/blog/rss", "technical"),                       # Together AI (Percy Liang) — open models, distributed training
+
     # ── ML research blogs — interpretability & alignment ─────────────────────
     ("https://www.neelnanda.io/blog/feed.xml", "technical"),         # Neel Nanda — mechanistic interpretability
     ("https://colah.github.io/rss.xml", "technical"),                # Chris Olah — circuits, interpretability
@@ -105,6 +118,7 @@ DISCOVERY_FEEDS = [
     ("https://aiimpacts.org/feed/", "technical"),                    # AI Impacts — forecasting
     ("https://intelligence.org/feed/", "technical"),                 # MIRI
     ("https://gwern.net/feed", "technical"),                         # Gwern — empirical, long-form
+    ("https://vickiboykis.com/index.xml", "technical"),              # Vicki Boykis — LLM internals, embeddings, cuts through hype
     ("https://paulfchristiano.com/feed/", "technical"),              # Paul Christiano
     ("https://vkrakovna.wordpress.com/feed/", "technical"),          # Victoria Krakovna
     ("https://rohinshah.com/feed/", "technical"),                    # Rohin Shah
@@ -193,6 +207,27 @@ DISCOVERY_FEEDS = [
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCXl4i9dYBrFOabk0xGmbkRA", "podcast"),  # Dwarkesh Podcast (YouTube)
     ("https://feeds.transistor.fm/future-of-life-institute-podcast-4e4d1fa5-a878-4cb2-91be-91c3ce266dfd", "podcast"),  # Future of Life Institute — AI safety, existential risk
     ("https://anchor.fm/s/1e4a0eac/podcast/rss", "podcast"),                # Machine Learning Street Talk — technical ML
+    ("https://twimlai.com/feed/podcast/", "podcast"),                        # TWIML AI — researcher interviews, ML breadth
+    ("https://changelog.com/practicalai/feed", "podcast"),                   # Practical AI — applied ML, broad accessible coverage
+    ("https://feeds.buzzsprout.com/2057836.rss", "podcast"),                 # Cognitive Revolution (Nathan Labenz) — frontier AI capabilities
+    ("https://feeds.buzzsprout.com/2022960.rss", "podcast"),                 # The Inside View (Michaël Trazzi / Redwood Research) — AI safety
+    ("https://feeds.buzzsprout.com/2037297.rss", "podcast"),                 # Alignment Forum Podcast — AF posts in audio format
+    ("https://braininspired.co/feed/podcast/", "podcast"),                   # Brain Inspired (Paul Middlebrooks) — neuroscience × AI
+    ("https://feeds.buzzsprout.com/1532009.rss", "podcast"),                 # The Robot Brains (Pieter Abbeel) — robotics, RL
+    ("https://feeds.simplecast.com/PkHMJpkS", "podcast"),                    # Gradient Dissent (W&B) — ML practitioners & researchers
+
+    # ── YouTube — paper walkthroughs & lectures ──────────────────────────────
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfew", "podcast"),  # Yannic Kilcher — paper walkthroughs (interpretability, alignment)
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5MZQRRVSB7kRCF_A", "podcast_selective"),  # Andrej Karpathy — deep-dive tutorials (Neural Networks: Zero to Hero)
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAg", "podcast_selective"),  # 3Blue1Brown — neural nets, transformers (visual, mathematical)
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg", "podcast_selective"),  # Two Minute Papers — AI research in 2 minutes
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCW1C2xOfXsIzPgjXyuhkw9g", "podcast"),  # Simons Institute — advanced CS/ML/theory talks
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA", "podcast_selective"),  # Computerphile — CS fundamentals, AI concepts
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCBa5G_ESCn8Yd4vw5U-gIcg", "podcast_selective"),  # Stanford Online — CS229/CS224N/CS231N lecture recordings
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCnUYZLuoy1rq1aVMwx4aTzw", "podcast_selective"),  # Google DeepMind — AlphaFold, Gemini, research talks
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCi1TC2fLRvgBQNe-T4dp8Eg", "podcast_selective"),  # NeurIPS — conference talk recordings
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCj8shE7aIn4Yawwbo2FceCQ", "podcast"),  # Aleksa Gordić (AI Epiphany) — GNN, transformer walkthroughs
+    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCF9O8Vj-FEbRDA5DcDGz-Pg", "podcast_selective"),  # Yann LeCun — rare but high-signal talks
 
     # ── Ideas, cognition & knowledge ────────────────────────────────────────
     ("https://rss.art19.com/sean-carrolls-mindscape", "podcast"),            # Sean Carroll's Mindscape — physics, philosophy, complexity

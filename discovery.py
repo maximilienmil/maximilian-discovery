@@ -1,13 +1,16 @@
 """
 Maximilian Discovery Engine
 Runs via GitHub Actions 3x/day.
-Fetches feeds, deduplicates, scores with an LLM, commits digest.
+Fetches feeds, deduplicates, scores with an LLM, commits digest, pushes to Telegram.
 
 LLM backend: Groq free tier (llama-3.3-70b-versatile) via OpenAI-compatible API.
 To switch to OpenRouter free tier instead, change:
   base_url -> "https://openrouter.ai/api/v1"
   api_key  -> os.environ["OPENROUTER_API_KEY"]
   MODEL    -> "meta-llama/llama-3.3-70b-instruct:free"
+
+Telegram: set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in GitHub secrets.
+If not set, Telegram is silently skipped.
 """
 
 import feedparser
@@ -19,12 +22,9 @@ import time
 import os
 import hashlib
 from datetime import datetime, timedelta, timezone
-from urllib.parse import quote, urlparse
+from urllib.parse import urlparse
 
-from feeds import (
-    DISCOVERY_FEEDS, NITTER_ACCOUNTS, NITTER_QUERIES, NITTER_LIST_SOURCES,
-    NITTER_HARDCODED_FALLBACKS, OPML_DOMAINS
-)
+from feeds import DISCOVERY_FEEDS, OPML_DOMAINS
 from profile import PROFILE
 
 SEEN_LINKS_FILE = "seen_links.json"
@@ -35,59 +35,7 @@ LOOKBACK_DAYS = 7
 MAX_PER_FEED = 12
 SCORE_THRESHOLD_HIGH = 8
 SCORE_THRESHOLD_MEDIUM = 5
-
-
-# ── NITTER INSTANCE MANAGEMENT ────────────────────────────────────────────────
-
-def fetch_nitter_instances() -> list[str]:
-    instances = set()
-
-    # Source 1: zedeus wiki markdown
-    try:
-        r = requests.get(NITTER_LIST_SOURCES[0], timeout=10)
-        for line in r.text.splitlines():
-            if "https://" in line:
-                for token in line.split():
-                    token = token.strip("|()[]*` ")
-                    if token.startswith("https://") and "." in token:
-                        parsed = urlparse(token)
-                        if parsed.netloc:
-                            instances.add(f"https://{parsed.netloc}")
-    except Exception as e:
-        log_error(f"Nitter wiki list fetch failed: {e}")
-
-    # Source 2: xnaas JSON
-    try:
-        r = requests.get(NITTER_LIST_SOURCES[1], timeout=10)
-        data = r.json()
-        for item in data:
-            if isinstance(item, dict) and item.get("url"):
-                instances.add(item["url"].rstrip("/"))
-            elif isinstance(item, str) and item.startswith("http"):
-                instances.add(item.rstrip("/"))
-    except Exception as e:
-        log_error(f"Nitter JSON list fetch failed: {e}")
-
-    result = list(instances) + NITTER_HARDCODED_FALLBACKS
-    return list(set(result))
-
-
-def test_instance(url: str) -> bool:
-    try:
-        r = requests.get(url, timeout=4, allow_redirects=True)
-        return r.status_code == 200 and "nitter" in r.text.lower()
-    except Exception:
-        return False
-
-
-def get_live_instance(instances: list[str]) -> str | None:
-    pool = instances[:]
-    random.shuffle(pool)
-    for url in pool[:12]:
-        if test_instance(url):
-            return url.rstrip("/")
-        time.sleep(random.uniform(0.3, 0.8))
-    return None
+SCORE_THRESHOLD_TECH = 6   # minimum score for the Technical section
 
 
 # ── LOGGING ───────────────────────────────────────────────────────────────────
@@ -149,7 +97,7 @@ def parse_date(entry) -> datetime | None:
     return None
 
 
-def fetch_feed(url: str, source_label: str) -> list[dict]:
+def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
     entries = []
     cutoff = datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)
     try:
@@ -185,6 +133,7 @@ def fetch_feed(url: str, source_label: str) -> list[dict]:
                 "link": link,
                 "summary": summary,
                 "source": source_label,
+                "source_type": source_type,
                 "published": published.strftime("%Y-%m-%d") if published else "",
             })
     except Exception as e:
@@ -193,39 +142,13 @@ def fetch_feed(url: str, source_label: str) -> list[dict]:
     return entries
 
 
-def fetch_all(nitter_instance: str | None) -> list[dict]:
+def fetch_all() -> list[dict]:
     all_entries = []
-
-    # Static discovery feeds
-    for url in DISCOVERY_FEEDS:
+    for url, source_type in DISCOVERY_FEEDS:
         label = urlparse(url).netloc or url[:50]
-        entries = fetch_feed(url, label)
+        entries = fetch_feed(url, label, source_type)
         all_entries.extend(entries)
         time.sleep(random.uniform(0.2, 0.6))
-
-    # Nitter per-account RSS
-    if nitter_instance:
-        # Deduplicate handles (list may have repeats)
-        seen_handles = set()
-        for handle in NITTER_ACCOUNTS:
-            h = handle.lower()
-            if h in seen_handles:
-                continue
-            seen_handles.add(h)
-            rss_url = f"{nitter_instance}/{handle}/rss"
-            entries = fetch_feed(rss_url, f"@{handle}")
-            all_entries.extend(entries)
-            time.sleep(random.uniform(0.4, 0.9))
-
-        # Nitter dynamic searches
-        for query in NITTER_QUERIES:
-            rss_url = f"{nitter_instance}/search?q={quote(query)}&f=rss"
-            entries = fetch_feed(rss_url, f"nitter:{query[:40]}")
-            all_entries.extend(entries)
-            time.sleep(random.uniform(0.5, 1.0))
-    else:
-        print("No live Nitter instance — skipping Twitter layer")
-
     print(f"Total entries fetched: {len(all_entries)}")
     return all_entries
 
@@ -266,7 +189,6 @@ def score_batch(entries: list[dict], client: OpenAI) -> list[dict]:
                 ]
             )
             raw = response.choices[0].message.content.strip()
-            # Strip markdown fences if present
             if raw.startswith("```"):
                 raw = raw.split("```")[1]
                 if raw.startswith("json"):
@@ -306,38 +228,53 @@ def score_all(entries: list[dict]) -> list[dict]:
 
 # ── DIGEST GENERATION ─────────────────────────────────────────────────────────
 
-def generate_digest(entries: list[dict], nitter_status: str, total_checked: int) -> str:
-    high = sorted(
-        [e for e in entries if e.get("score", 0) >= SCORE_THRESHOLD_HIGH],
+def generate_digest(entries: list[dict], total_checked: int) -> str:
+    discovery = [e for e in entries if e.get("source_type") != "technical"]
+    technical = [e for e in entries if e.get("source_type") == "technical"]
+
+    must_read = sorted(
+        [e for e in discovery if e.get("score", 0) >= SCORE_THRESHOLD_HIGH],
         key=lambda x: x.get("score", 0), reverse=True
     )
-    medium = sorted(
-        [e for e in entries if SCORE_THRESHOLD_MEDIUM <= e.get("score", 0) < SCORE_THRESHOLD_HIGH],
+    worth_look = sorted(
+        [e for e in discovery if SCORE_THRESHOLD_MEDIUM <= e.get("score", 0) < SCORE_THRESHOLD_HIGH],
+        key=lambda x: x.get("score", 0), reverse=True
+    )
+    tech_picks = sorted(
+        [e for e in technical if e.get("score", 0) >= SCORE_THRESHOLD_TECH],
         key=lambda x: x.get("score", 0), reverse=True
     )
 
     ts = datetime.now(timezone.utc).strftime("%B %d, %Y · %H:%M UTC")
     lines = [
         f"# Discovery Digest — {ts}",
-        f"\n**{len(high)} must-read** · **{len(medium)} worth a look** · {total_checked} items checked · Nitter: {nitter_status}\n",
+        f"\n**{len(must_read)} must-read** · **{len(worth_look)} worth a look** · **{len(tech_picks)} technical** · {total_checked} items checked\n",
         "---\n",
     ]
 
-    if not high and not medium:
+    if not must_read and not worth_look and not tech_picks:
         lines.append("*No new high-signal items this cycle.*")
         return "\n".join(lines)
 
-    if high:
+    if must_read:
         lines.append("## Must Read\n")
-        for e in high[:20]:
+        for e in must_read[:20]:
             lines.append(f"**[{e['title']}]({e['link']})** &nbsp;`{e.get('score')}/10`")
             if e.get("reason"):
                 lines.append(f"*{e['reason']}*")
             lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; {e.get('published', '')}</sub>\n")
 
-    if medium:
+    if worth_look:
         lines.append("## Worth a Look\n")
-        for e in medium[:15]:
+        for e in worth_look[:15]:
+            lines.append(f"**[{e['title']}]({e['link']})** &nbsp;`{e.get('score')}/10`")
+            if e.get("reason"):
+                lines.append(f"*{e['reason']}*")
+            lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; {e.get('published', '')}</sub>\n")
+
+    if tech_picks:
+        lines.append("## Research & Technical\n")
+        for e in tech_picks[:15]:
             lines.append(f"**[{e['title']}]({e['link']})** &nbsp;`{e.get('score')}/10`")
             if e.get("reason"):
                 lines.append(f"*{e['reason']}*")
@@ -346,24 +283,88 @@ def generate_digest(entries: list[dict], nitter_status: str, total_checked: int)
     return "\n".join(lines)
 
 
+# ── TELEGRAM ──────────────────────────────────────────────────────────────────
+
+def send_telegram(entries: list[dict], total_checked: int):
+    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+    if not bot_token or not chat_id:
+        print("Telegram not configured — skipping.")
+        return
+
+    discovery = [e for e in entries if e.get("source_type") != "technical"]
+    technical = [e for e in entries if e.get("source_type") == "technical"]
+
+    must_read = sorted(
+        [e for e in discovery if e.get("score", 0) >= SCORE_THRESHOLD_HIGH],
+        key=lambda x: x.get("score", 0), reverse=True
+    )
+    worth_look = sorted(
+        [e for e in discovery if SCORE_THRESHOLD_MEDIUM <= e.get("score", 0) < SCORE_THRESHOLD_HIGH],
+        key=lambda x: x.get("score", 0), reverse=True
+    )
+    tech_picks = sorted(
+        [e for e in technical if e.get("score", 0) >= SCORE_THRESHOLD_TECH],
+        key=lambda x: x.get("score", 0), reverse=True
+    )
+
+    ts = datetime.now(timezone.utc).strftime("%b %d · %H:%M UTC")
+    parts = [f"<b>Discovery Digest — {ts}</b>"]
+    parts.append(f"<i>{len(must_read)} must-read · {len(worth_look)} worth a look · {len(tech_picks)} technical · {total_checked} checked</i>")
+
+    if must_read:
+        parts.append("\n<b>Must Read</b>")
+        for e in must_read[:10]:
+            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            reason = e.get("reason", "")[:120].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
+            if reason:
+                parts.append(f'  <i>{reason}</i>')
+
+    if worth_look:
+        parts.append("\n<b>Worth a Look</b>")
+        for e in worth_look[:8]:
+            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
+
+    if tech_picks:
+        parts.append("\n<b>Research &amp; Technical</b>")
+        for e in tech_picks[:6]:
+            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
+
+    msg = "\n".join(parts)
+    if len(msg) > 4000:
+        msg = msg[:3950] + "\n\n<i>[truncated]</i>"
+
+    try:
+        r = requests.post(
+            f"https://api.telegram.org/bot{bot_token}/sendMessage",
+            json={
+                "chat_id": chat_id,
+                "text": msg,
+                "parse_mode": "HTML",
+                "disable_web_page_preview": True,
+            },
+            timeout=15,
+        )
+        if r.status_code == 200:
+            print("Telegram: sent.")
+        else:
+            log_error(f"Telegram send failed: {r.status_code} {r.text[:200]}")
+    except Exception as e:
+        log_error(f"Telegram exception: {e}")
+
+
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
     print("=== Maximilian Discovery Engine ===")
     print(f"Run time: {datetime.now(timezone.utc).isoformat()}")
 
-    # Nitter setup
-    print("Fetching Nitter instances...")
-    instances = fetch_nitter_instances()
-    live = get_live_instance(instances)
-    nitter_status = live if live else "unavailable"
-    print(f"Nitter: {nitter_status}")
-
-    # Fetch
     print("Fetching feeds...")
-    all_entries = fetch_all(live)
+    all_entries = fetch_all()
 
-    # Dedup
     seen = load_seen()
     fresh, new_hashes = deduplicate(all_entries, seen)
     print(f"New after dedup: {len(fresh)} (seen pool: {len(seen)})")
@@ -375,20 +376,19 @@ def main():
         print("Nothing new. Digest written.")
         return
 
-    # Score
-    print(f"Scoring {len(fresh)} items with Claude...")
+    print(f"Scoring {len(fresh)} items...")
     scored = score_all(fresh)
 
-    # Update seen
     save_seen(seen | new_hashes)
 
-    # Generate digest
-    digest = generate_digest(scored, nitter_status, len(fresh))
+    digest = generate_digest(scored, len(fresh))
     with open(DIGEST_FILE, "w") as f:
         f.write(digest)
 
     high_count = len([e for e in scored if e.get("score", 0) >= SCORE_THRESHOLD_HIGH])
     print(f"Done. High-signal: {high_count}. Digest written to {DIGEST_FILE}.")
+
+    send_telegram(scored, len(fresh))
 
 
 if __name__ == "__main__":

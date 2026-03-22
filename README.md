@@ -22,6 +22,17 @@ Go to: **GitHub repo → Settings → Secrets and variables → Actions → New 
 
 > **To use OpenRouter instead:** change the secret name to `OPENROUTER_API_KEY`, set `base_url` to `https://openrouter.ai/api/v1` in `discovery.py`, and set `MODEL` to `meta-llama/llama-3.3-70b-instruct:free`.
 
+### 2. Set up Telegram notifications (optional)
+
+1. Message [@BotFather](https://t.me/BotFather) on Telegram → `/newbot` → follow prompts → copy the **bot token**
+2. Start a conversation with your new bot (search its username and hit Start)
+3. Visit `https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates` in your browser → find `"chat":{"id": ...}` → copy that number as your **chat ID**
+4. Add two more GitHub secrets:
+   - `TELEGRAM_BOT_TOKEN` — the token from BotFather
+   - `TELEGRAM_CHAT_ID` — your chat ID number
+
+Each run will push Must Read, Worth a Look, and Research & Technical items directly to your Telegram chat. If these secrets are not set, the step is silently skipped.
+
 ### 2. Trigger a manual run (optional)
 
 Go to **Actions → Discovery Run → Run workflow** to test immediately without waiting for the schedule.

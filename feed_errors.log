@@ -324,3 +324,62 @@
 [2026-03-22 14:56 UTC] Score batch failed both attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kknk5nwce4fvnvjm7zc2f4wx` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 97127, Requested 3778. Please try again in 13m1.92s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
 [2026-03-22 14:56 UTC] Score batch error (attempt 1): Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kknk5nwce4fvnvjm7zc2f4wx` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 97125, Requested 4069. Please try again in 17m11.616s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}} — retrying
 [2026-03-22 14:56 UTC] Score batch failed both attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kknk5nwce4fvnvjm7zc2f4wx` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 97119, Requested 4069. Please try again in 17m6.432s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-22 16:27 UTC] Feed parse error (firstmonday.org): text/html; charset=iso-8859-1 is not an XML media type
+[2026-03-22 16:27 UTC] Feed parse error (journals.sagepub.com): <unknown>:8:0: syntax error
+[2026-03-22 16:27 UTC] Feed parse error (dl.acm.org): <unknown>:8:0: syntax error
+[2026-03-22 16:27 UTC] Feed parse error (dl.acm.org): <unknown>:8:0: syntax error
+[2026-03-22 16:27 UTC] Feed parse error (hai.stanford.edu): <unknown>:2:4544: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (allenai.org): text/html; charset=utf-8 is not an XML media type
+[2026-03-22 16:27 UTC] Feed parse error (research.ibm.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-22 16:27 UTC] Feed parse error (mila.quebec): <unknown>:70:76: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (blog.eleutherai.org): <urlopen error [Errno -2] Name or service not known>
+[2026-03-22 16:27 UTC] Feed parse error (ai.meta.com): <unknown>:4:1420: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (mistral.ai): <unknown>:76:0: junk after document element
+[2026-03-22 16:27 UTC] Feed parse error (www.together.ai): <unknown>:2:1016: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (www.neelnanda.io): <unknown>:2:0: syntax error
+[2026-03-22 16:27 UTC] Feed parse error (fchollet.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (eugeneyan.com): <unknown>:13:34: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (hamel.dev): <unknown>:7:26: undefined entity
+[2026-03-22 16:27 UTC] Feed parse error (www.fast.ai): <unknown>:7:26: undefined entity
+[2026-03-22 16:27 UTC] Feed parse error (ruder.io): <unknown>:2:0: syntax error
+[2026-03-22 16:27 UTC] Feed parse error (paperswithcode.com): <unknown>:2:0: syntax error
+[2026-03-22 16:27 UTC] Feed parse error (epochai.org): <unknown>:2:1265: not well-formed (invalid token)
+[2026-03-22 16:27 UTC] Feed parse error (metr.org): <unknown>:59:98: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (gwern.net): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (aisnakeoil.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (garymarcus.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (thezvi.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (abebabirhane.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (chinai.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (thealgorithmicbridge.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (safiyaunoble.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (joybuolamwini.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (theconvivialsociety.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (eugenewei.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (craigmod.com): <unknown>:44:20: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (digest.bps.org.uk): <unknown>:5:50: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (astralcodexten.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (breakingsmart.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (asteriskmag.com): <unknown>:2:0: syntax error
+[2026-03-22 16:28 UTC] Feed parse error (logicmag.io): <unknown>:117:150: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (cyber.harvard.edu): <unknown>:2:102: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (www.turing.ac.uk): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (knightcolumbia.org): <unknown>:17:50: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (5rightsfoundation.com): <unknown>:8:490: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (mattersoftech.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (twimlai.com): <unknown>:2:39: not well-formed (invalid token)
+[2026-03-22 16:28 UTC] Feed parse error (feeds.buzzsprout.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-22 16:28 UTC] Feed parse error (feeds.buzzsprout.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-22 16:29 UTC] Feed parse error (feeds.simplecast.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-22 16:29 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
+[2026-03-22 16:29 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
+[2026-03-22 16:29 UTC] Score batch error (attempt 1): Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kknk5nwce4fvnvjm7zc2f4wx` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96381, Requested 4486. Please try again in 12m29.088s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}} — retrying
+[2026-03-22 16:29 UTC] Score batch failed both attempts: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kknk5nwce4fvnvjm7zc2f4wx` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96375, Requested 4486. Please try again in 12m23.904s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}

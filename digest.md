@@ -1,89 +1,73 @@
-# Discovery Digest — March 22, 2026 · 14:56 UTC
+# Discovery Digest — March 22, 2026 · 16:29 UTC
 
-**0 must-read** · **9 worth a look** · **11 technical** · **0 podcast** · 119 items checked
+**0 must-read** · **0 worth a look** · **6 technical** · **10 podcast** · 49 items checked
 
 ---
 
-## Worth a Look
-
-**[Autoresearching Apple's "LLM in a Flash" to run Qwen 397B locally](https://simonwillison.net/2026/Mar/18/llm-in-a-flash/#atom-everything)** &nbsp;`7/10`
-*The article discusses autoresearching Apple's LLM in a Flash, which is relevant to AI capabilities and honest limitations.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-18</sub>
-
-**[Subagents](https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything)** &nbsp;`7/10`
-*The article discusses subagents in LLMs, which is relevant to AI safety and alignment.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-17</sub>
-
-**[🔮 Jensen’s OpenClaw thesis](https://www.exponentialview.co/p/jensens-openclaw-thesis)** &nbsp;`7/10`
-*The article discusses Jensen's OpenClaw thesis, which is relevant to AI safety and alignment.*
-<sub>www.exponentialview.co &nbsp;·&nbsp; 2026-03-21</sub>
-
-**[Snowflake Cortex AI Escapes Sandbox and Executes Malware](https://simonwillison.net/2026/Mar/18/snowflake-cortex-ai/#atom-everything)** &nbsp;`6/10`
-*The article discusses a prompt injection attack on Snowflake's Cortex AI, which is relevant to AI safety and security.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-18</sub>
-
-**[Automation’s appetite for human traces](https://joinreboot.org/p/automations-appetite-for-human-traces)** &nbsp;`6/10`
-*The article discusses automation's appetite for human traces, which is relevant to the future of knowledge work.*
-<sub>joinreboot.org &nbsp;·&nbsp; 2026-03-18</sub>
-
-**[Using Git with coding agents](https://simonwillison.net/guides/agentic-engineering-patterns/using-git-with-coding-agents/#atom-everything)** &nbsp;`5/10`
-*The article discusses using Git with coding agents, which is relevant to AI and software development but not a high-priority topic for Maximilian.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-21</sub>
-
-**[GPT-5.4 mini and GPT-5.4 nano, which can describe 76,000 photos for $52](https://simonwillison.net/2026/Mar/17/mini-and-nano/#atom-everything)** &nbsp;`5/10`
-*The article discusses GPT-5.4 mini and nano, which is relevant to AI capabilities but not a high-priority topic for Maximilian.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-17</sub>
-
-**[Introducing Mistral Small 4](https://simonwillison.net/2026/Mar/16/mistral-small-4/#atom-everything)** &nbsp;`5/10`
-*The article discusses the introduction of Mistral Small 4, which is relevant to AI capabilities but not a high-priority topic for Maximilian.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-16</sub>
-
-**[🔮 Exponential View #566: A solar shield; AI agents; human judgment; China’s robots++](https://www.exponentialview.co/p/ev-566)** &nbsp;`5/10`
-*The article discusses a solar shield, AI agents, and human judgment, which is relevant to AI and its implications but not a high-priority topic for Maximilian.*
-<sub>www.exponentialview.co &nbsp;·&nbsp; 2026-03-22</sub>
-
 ## Research & Technical
 
-**[Metagaming matters for training, evaluation, and oversight](https://www.alignmentforum.org/posts/4hXWSw8tzoK9PM7v6/metagaming-matters-for-training-evaluation-and-oversight)** &nbsp;`9/10`
-*Discusses metagaming in the context of training, evaluation, and oversight, providing novel insights into AI alignment.*
-<sub>www.alignmentforum.org &nbsp;·&nbsp; 2026-03-18</sub>
+**[Goldilocks RL: Tuning Task Difficulty to Escape Sparse Rewards for Reasoning](https://machinelearning.apple.com/research/goldilocks)** &nbsp;`9/10`
+*Presents Goldilocks RL, a new approach to tuning task difficulty in reinforcement learning, which could significantly improve the efficiency of LLM training.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-18</sub>
 
-**[Developmental Dynamics of Deviant Peer Affiliation and Internet Gaming Disorder: A Time-Varying Effect Modeling Approach](https://link.springer.com/article/10.1007/s10964-026-02340-x)** &nbsp;`8/10`
-*Presents a longitudinal study on the developmental dynamics of deviant peer affiliation and internet gaming disorder, utilizing a time-varying effect modeling approach.*
-<sub>link.springer.com &nbsp;·&nbsp; 2026-03-19</sub>
+**[Prose2Policy (P2P): A Practical LLM Pipeline for Translating Natural-Language Access Policies into Executable Rego](https://machinelearning.apple.com/research/prose2policy)** &nbsp;`8/10`
+*Introduces Prose2Policy, a practical LLM pipeline for translating natural-language access policies into executable Rego code, a novel application of LLMs in policy translation.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-18</sub>
 
-**[“Act-based approval-directed agents”, for IDA skeptics](https://www.alignmentforum.org/posts/RKtTi82t8X8TQy5FX/act-based-approval-directed-agents-for-ida-skeptics)** &nbsp;`8/10`
-*Presents the concept of act-based approval-directed agents, offering a new perspective on AI alignment and decision-making.*
-<sub>www.alignmentforum.org &nbsp;·&nbsp; 2026-03-18</sub>
+**[TrajTok: Learning Trajectory Tokens enables better Video Understanding](https://machinelearning.apple.com/research/trajtok)** &nbsp;`8/10`
+*Proposes TrajTok, a novel trajectory-based tokenization approach for video understanding, which decouples video duration from token count and offers a promising solution for efficient video processing.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-17</sub>
 
-**[Understanding when and why agents scheme](https://www.lesswrong.com/posts/amYmcwCuyuCEZcrRm/understanding-when-and-why-agents-scheme)** &nbsp;`8/10`
-*Develops a framework for understanding when and why agents scheme, offering insights into agent behavior and decision-making.*
-<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-03-21</sub>
+**[AMES: Approximate Multi-modal Enterprise Search via Late Interaction Retrieval](https://machinelearning.apple.com/research/ames)** &nbsp;`7/10`
+*Describes AMES, an approximate multimodal enterprise search architecture, which demonstrates the potential for fine-grained multimodal late interaction retrieval in production-grade search engines.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-17</sub>
 
-**[Build a Domain-Specific Embedding Model in Under a Day](https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune)** &nbsp;`7/10`
-*Offers a guide on building a domain-specific embedding model, providing practical information on the process.*
-<sub>huggingface.co &nbsp;·&nbsp; 2026-03-20</sub>
+**[RubiCap: Rubric-Guided Reinforcement Learning for Dense Image Captioning](https://machinelearning.apple.com/research/rubicap)** &nbsp;`7/10`
+*Introduces RubiCap, a rubric-guided reinforcement learning approach for dense image captioning, which addresses the challenges of scaling expert-quality annotations and promoting output diversity.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-16</sub>
 
-**[New RFP on Interpretability from Schmidt Sciences](https://www.alignmentforum.org/posts/Pc789vx2oHgEXYZZH/new-rfp-on-interpretability-from-schmidt-sciences-1)** &nbsp;`7/10`
-*Announces a request for proposals on interpretability from Schmidt Sciences, highlighting the importance of this area in AI research.*
-<sub>www.alignmentforum.org &nbsp;·&nbsp; 2026-03-17</sub>
+**[LumberChunker: Long-Form Narrative Document Segmentation](https://blog.ml.cmu.edu/2026/03/17/lumberchunker-long-form-narrative-document-segmentation/)** &nbsp;`6/10`
+*Presents LumberChunker, a long-form narrative document segmentation approach that utilizes LLMs to create more natural chunks for retrieval tasks.*
+<sub>blog.ml.cmu.edu &nbsp;·&nbsp; 2026-03-17</sub>
 
-**[Grounding Coding Agents via Dixit](https://www.lesswrong.com/posts/Mnr8q6zC4GopMA9Ge/grounding-coding-agents-via-dixit)** &nbsp;`7/10`
-*Presents ideas on grounding coding agents via Dixit, offering a novel approach to coding agent development and interpretability.*
-<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-03-21</sub>
+## Podcast Episodes
 
-**[Artificial intelligence in Nigerian newsrooms: Navigating jurisdictional hybridization, retreat, and maintenance](https://journals.sagepub.com/doi/abs/10.1177/14614448261429426?af=R)** &nbsp;`6/10`
-*Explores the impact of AI on journalism through in-depth interviews with Nigerian journalists, providing insights into the redistribution of work tasks and professional jurisdiction.*
-<sub>journals.sagepub.com &nbsp;·&nbsp; 2026-03-20</sub>
+**[How DeepMind’s New AI Predicts What It Cannot See](https://www.youtube.com/watch?v=ssbHkYB0jYM)** &nbsp;`8/10`
+*Introduces DeepMind's new AI that predicts what it cannot see, showcasing innovative applications of LLMs in prediction tasks.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-07</sub>
 
-**[Holotron-12B - High Throughput Computer Use Agent](https://huggingface.co/blog/Hcompany/holotron-12b)** &nbsp;`6/10`
-*Introduces Holotron-12B, a high-throughput computer use agent, but lacks detailed information on its mechanisms or implications.*
-<sub>huggingface.co &nbsp;·&nbsp; 2026-03-17</sub>
+**[Can AI do research math?](https://www.youtube.com/watch?v=G0DqKlAcNxM)** &nbsp;`8/10`
+*Explores the capabilities of AI in research mathematics, which is a topic of interest for understanding AI's potential in knowledge work.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-15</sub>
 
-**[China declares AGI development to be a part of 5-year plan](https://www.lesswrong.com/posts/JKhoyebpedLQLb5JN/china-declares-agi-development-to-be-a-part-of-5-year-plan)** &nbsp;`6/10`
-*Reports on China's declaration of AGI development as part of its 5-year plan, providing insight into global AI development strategies.*
-<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-03-21</sub>
+**[From the Ball-proximal (Broximal) Point Method to Efficient Training of LLM](https://www.youtube.com/watch?v=Va7ER6bRodA)** &nbsp;`8/10`
+*Introduces the Ball-Proximal Point Method for efficient training of LLMs, which is a novel technique for optimizing non-smooth and non-convex functions.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-05</sub>
 
-**[Summary: Mechanisms to Verify International Agreements about AI Development](https://intelligence.org/2026/03/18/mechanisms-to-verify-international-agreements-about-ai-development/)** &nbsp;`6/10`
-*The article discusses mechanisms to verify international agreements about AI development, which is relevant to AI safety and alignment.*
-<sub>intelligence.org &nbsp;·&nbsp; 2026-03-18</sub>
+**[Scale Learning and Reasoning Across Heterogeneous Gradients and Semantics](https://www.youtube.com/watch?v=TYnA4_yJoaA)** &nbsp;`8/10`
+*Explores scale learning and reasoning across heterogeneous gradients and semantics, which is crucial for understanding how LLMs can be applied in diverse contexts.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-05</sub>
+
+**[The Many Faces of Heterogeneity: Federated, Continual, and Modular Learning](https://www.youtube.com/watch?v=M_iDcSKMdlg)** &nbsp;`8/10`
+*Discusses the many faces of heterogeneity in federated, continual, and modular learning, which is a critical challenge in AI research.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-05</sub>
+
+**[Responsibly Improving AI with Privacy-Sensitive Data: Principles, Theory, and Practice | Richard...](https://www.youtube.com/watch?v=goUGCS2PCd0)** &nbsp;`7/10`
+*Discusses principles, theory, and practice for improving AI with privacy-sensitive data, which is relevant to AI safety and data privacy.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-09</sub>
+
+**[Toward Provably Private Federated Learning](https://www.youtube.com/watch?v=Pyr604Ex5zI)** &nbsp;`7/10`
+*Presents a talk on provably private federated learning, which addresses important concerns in AI research and data privacy.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-09</sub>
+
+**["Federated Reinforcement Learning: Statistical and Communication Trade-offs](https://www.youtube.com/watch?v=8WtRC3rZ0zQ)** &nbsp;`7/10`
+*Presents a talk on federated reinforcement learning, which discusses statistical and communication trade-offs in this area.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-05</sub>
+
+**[Understanding Outer Optimizers in Local SGD: Learning Rates, Momentum, and Acceleration](https://www.youtube.com/watch?v=9V-LWkRNIsw)** &nbsp;`7/10`
+*Examines outer optimizers in local SGD, focusing on learning rates, momentum, and acceleration, which are essential components of LLM training.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-05</sub>
+
+**[Symbiotic Relations between Decoupled Training, Optimization, and Federated Learning](https://www.youtube.com/watch?v=UZLbq-q0vLQ)** &nbsp;`7/10`
+*Explores symbiotic relations between decoupled training, optimization, and federated learning, which is relevant to understanding how LLMs can be efficiently trained in distributed environments.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-05</sub>

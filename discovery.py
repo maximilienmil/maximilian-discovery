@@ -367,11 +367,15 @@ def send_telegram(entries: list[dict], total_checked: int):
     parts = [f"<b>Discovery Digest — {ts}</b>"]
     parts.append(f"<i>{len(must_read)} must-read · {len(worth_look)} worth a look · {len(tech_picks)} technical · {len(podcast_picks)} podcast · {total_checked} checked</i>")
 
+    def esc(s: str) -> str:
+        """Escape HTML entities in the correct order for Telegram HTML mode."""
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
     if must_read:
         parts.append("\n<b>Must Read</b>")
         for e in must_read[:10]:
-            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
-            reason = e.get("reason", "")[:120].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            title = esc(e["title"][:90])
+            reason = esc(e.get("reason", "")[:120])
             parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
             if reason:
                 parts.append(f'  <i>{reason}</i>')
@@ -379,27 +383,30 @@ def send_telegram(entries: list[dict], total_checked: int):
     if worth_look:
         parts.append("\n<b>Worth a Look</b>")
         for e in worth_look[:8]:
-            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            title = esc(e["title"][:90])
             parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
 
     if tech_picks:
         parts.append("\n<b>Research &amp; Technical</b>")
         for e in tech_picks[:6]:
-            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            title = esc(e["title"][:90])
             parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
 
     if podcast_picks:
         parts.append("\n<b>Podcast Episodes</b>")
         for e in podcast_picks[:5]:
-            title = e["title"][:90].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
-            reason = e.get("reason", "")[:120].replace("<", "&lt;").replace(">", "&gt;").replace("&", "&amp;")
+            title = esc(e["title"][:90])
+            reason = esc(e.get("reason", "")[:120])
             parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
             if reason:
                 parts.append(f'  <i>{reason}</i>')
 
     msg = "\n".join(parts)
     if len(msg) > 4000:
-        msg = msg[:3950] + "\n\n<i>[truncated]</i>"
+        import re
+        truncated = msg[:3950]
+        truncated = re.sub(r'<[^>]*$', '', truncated)  # remove any incomplete tag at the cut point
+        msg = truncated + "\n\n<i>[truncated]</i>"
 
     try:
         r = requests.post(

@@ -101,20 +101,33 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
     entries = []
     cutoff = datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)
     try:
-        # Fetch with requests first — gives feedparser raw bytes and avoids lxml strictness
-        r = requests.get(
-            url,
-            headers={"User-Agent": "Mozilla/5.0 (compatible; Feedfetcher-Google/1.0)"},
-            timeout=15,
-            allow_redirects=True,
-        )
-        r.raise_for_status()
-        feed = feedparser.parse(
-            r.content,
-            response_headers={"content-type": r.headers.get("content-type", "application/rss+xml")},
-        )
-        if feed.bozo and not feed.entries:
-            log_error(f"Feed parse error ({source_label}): {feed.bozo_exception}")
+        # Try requests first (handles encoding better, avoids lxml strictness)
+        feed = None
+        try:
+            r = requests.get(
+                url,
+                headers={"User-Agent": "Mozilla/5.0 (compatible; Feedfetcher-Google/1.0)"},
+                timeout=15,
+                allow_redirects=True,
+            )
+            if r.status_code == 200:
+                feed = feedparser.parse(
+                    r.content,
+                    response_headers={"content-type": r.headers.get("content-type", "application/rss+xml")},
+                )
+        except Exception:
+            pass
+
+        # Fall back to feedparser direct fetch if requests failed or returned no entries
+        if feed is None or (feed.bozo and not feed.entries):
+            feed = feedparser.parse(
+                url,
+                request_headers={"User-Agent": "Mozilla/5.0 (compatible; Feedfetcher-Google/1.0)"},
+            )
+
+        if not feed.entries:
+            if feed.bozo:
+                log_error(f"Feed parse error ({source_label}): {feed.bozo_exception}")
             return []
 
         for entry in feed.entries[:MAX_PER_FEED]:
@@ -143,10 +156,6 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
                 "source_type": source_type,
                 "published": published.strftime("%Y-%m-%d") if published else "",
             })
-    except requests.HTTPError as e:
-        log_error(f"Feed HTTP error ({source_label}): {e}")
-    except requests.RequestException as e:
-        log_error(f"Feed request error ({source_label}): {e}")
     except Exception as e:
         log_error(f"Feed fetch error ({source_label}): {e}")
 

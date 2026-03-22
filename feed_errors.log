@@ -43,3 +43,58 @@
 [2026-03-22 13:43 UTC] Feed parse error (www.media.mit.edu): <unknown>:10:29: undefined entity
 [2026-03-22 13:43 UTC] Feed parse error (www.media.mit.edu): <unknown>:10:29: undefined entity
 [2026-03-22 13:43 UTC] Feed parse error (www.media.mit.edu): <unknown>:10:29: undefined entity
+[2026-03-22 14:01 UTC] Feed HTTP error (export.arxiv.org): 404 Client Error: Not Found for url: https://export.arxiv.org/search/?query=youth+platform+governance&searchtype=all&order=-announced_date_first&format=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (export.arxiv.org): 404 Client Error: Not Found for url: https://export.arxiv.org/search/?query=algorithmic+harm+children&searchtype=all&order=-announced_date_first&format=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (export.arxiv.org): 429 Client Error: Unknown Error for url: https://export.arxiv.org/search/?query=child+rights+digital+AI&searchtype=all&order=-announced_date_first&format=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (export.arxiv.org): 429 Client Error: Unknown Error for url: https://export.arxiv.org/search/?query=social+media+adolescent+longitudinal&searchtype=all&order=-announced_date_first&format=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (export.arxiv.org): 404 Client Error: Not Found for url: https://export.arxiv.org/search/?query=AI+alignment+interpretability&searchtype=all&order=-announced_date_first&format=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (firstmonday.org): 403 Client Error: Forbidden for url: https://firstmonday.org/ojs/index.php/fm/gateway/plugin/WebFeedGatewayPlugin/rss2
+[2026-03-22 14:01 UTC] Feed HTTP error (journals.sagepub.com): 404 Client Error:  for url: https://journals.sagepub.com/action/showFeed?jc=boca&type=axatoc&feed=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (dl.acm.org): 404 Client Error:  for url: https://dl.acm.org/action/showFeed?ui=0&mi=ehikzz&ai=2b4&jc=chi&type=axatoc&feed=rss
+[2026-03-22 14:01 UTC] Feed HTTP error (academic.oup.com): 404 Client Error: Not Found for url: https://academic.oup.com/rss/site_5504/advanceAccess_5504.xml
+[2026-03-22 14:01 UTC] Feed HTTP error (ruder.io): 404 Client Error: Not Found for url: https://www.ruder.io/rss/index.rss
+[2026-03-22 14:01 UTC] Feed HTTP error (fchollet.substack.com): 403 Client Error: Forbidden for url: https://fchollet.substack.com/feed
+[2026-03-22 14:01 UTC] Feed HTTP error (epochai.org): 404 Client Error: Not Found for url: https://epoch.ai/feed
+[2026-03-22 14:01 UTC] Feed HTTP error (gwern.net): 403 Client Error: Forbidden for url: https://gwern.substack.com/feed
+[2026-03-22 14:01 UTC] Feed parse error (cyber.harvard.edu): <unknown>:2:102: not well-formed (invalid token)
+[2026-03-22 14:02 UTC] Feed HTTP error (www.turing.ac.uk): 403 Client Error: Forbidden for url: https://www.turing.ac.uk/rss.xml
+[2026-03-22 14:02 UTC] Feed HTTP error (points.datasociety.net): 403 Client Error: Forbidden for url: https://points.datasociety.net/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (knightcolumbia.org): 404 Client Error: Not Found for url: https://knightcolumbia.org/feed
+[2026-03-22 14:02 UTC] Feed parse error (5rightsfoundation.com): <unknown>:8:490: not well-formed (invalid token)
+[2026-03-22 14:02 UTC] Feed HTTP error (www.commonsensemedia.org): 404 Client Error: Not Found for url: https://www.commonsensemedia.org/rss.xml
+[2026-03-22 14:02 UTC] Feed HTTP error (www.unicef-irc.org): 403 Client Error: Forbidden for url: https://www.unicef.org/innocenti
+[2026-03-22 14:02 UTC] Feed parse error (techpolicyinstitute.org): <unknown>:2:189: not well-formed (invalid token)
+[2026-03-22 14:02 UTC] Feed HTTP error (www.rand.org): 404 Client Error: Not Found for url: https://www.rand.org/content/dam/rand/sites/rss/research.xml
+[2026-03-22 14:02 UTC] Feed HTTP error (privacyinternational.org): 500 Server Error: Internal Server Error for url: https://privacyinternational.org/rss.xml
+[2026-03-22 14:02 UTC] Feed request error (www.internetsociety.org): HTTPSConnectionPool(host='www.internetsociety.org', port=443): Read timed out. (read timeout=15)
+[2026-03-22 14:02 UTC] Feed HTTP error (aisnakeoil.substack.com): 403 Client Error: Forbidden for url: https://aisnakeoil.substack.com/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (garymarcus.substack.com): 403 Client Error: Forbidden for url: https://garymarcus.substack.com/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (thezvi.substack.com): 403 Client Error: Forbidden for url: https://thezvi.substack.com/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (abebabirhane.substack.com): 403 Client Error: Forbidden for url: https://abebabirhane.substack.com/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (safiyaunoble.substack.com): 403 Client Error: Forbidden for url: https://safiyaunoble.substack.com/feed
+[2026-03-22 14:02 UTC] Feed request error (datafeminism.io): HTTPSConnectionPool(host='datafeminism.io', port=443): Max retries exceeded with url: /feed/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='datafeminism.io', port=443) at 0x7f1724bb3fe0>, 'Connection to datafeminism.io timed out. (connect timeout=15)'))
+[2026-03-22 14:02 UTC] Feed HTTP error (www.ajl.org): 404 Client Error: Not Found for url: https://www.ajl.org/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (joybuolamwini.substack.com): 403 Client Error: Forbidden for url: https://joybuolamwini.substack.com/feed
+[2026-03-22 14:02 UTC] Feed HTTP error (chinai.substack.com): 403 Client Error: Forbidden for url: https://chinai.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (thealgorithmicbridge.substack.com): 403 Client Error: Forbidden for url: https://thealgorithmicbridge.substack.com/feed
+[2026-03-22 14:03 UTC] Feed request error (www.collectiveintelligenceproject.org): HTTPSConnectionPool(host='www.collectiveintelligenceproject.org', port=443): Max retries exceeded with url: /feed/ (Caused by NameResolutionError("HTTPSConnection(host='www.collectiveintelligenceproject.org', port=443): Failed to resolve 'www.collectiveintelligenceproject.org' ([Errno -2] Name or service not known)"))
+[2026-03-22 14:03 UTC] Feed HTTP error (sbubeck.substack.com): 403 Client Error: Forbidden for url: https://sbubeck.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (digest.bps.org.uk): 404 Client Error: Not Found for url: https://www.bps.org.uk/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (astralcodexten.substack.com): 403 Client Error: Forbidden for url: https://astralcodexten.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (eugenewei.substack.com): 403 Client Error: Forbidden for url: https://eugenewei.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (breakingsmart.substack.com): 403 Client Error: Forbidden for url: https://breakingsmart.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (craigmod.com): 404 Client Error: Not Found for url: https://craigmod.com/rss/essays/
+[2026-03-22 14:03 UTC] Feed HTTP error (asteriskmag.com): 404 Client Error: Not Found for url: https://asteriskmag.com/feed.xml
+[2026-03-22 14:03 UTC] Feed HTTP error (logicmag.io): 404 Client Error: Not Found for url: https://logicmag.io/feed.xml
+[2026-03-22 14:03 UTC] Feed HTTP error (www.prospectmagazine.co.uk): 404 Client Error: Not Found for url: https://www.prospectmagazine.co.uk/rss
+[2026-03-22 14:03 UTC] Feed HTTP error (theconvivialsociety.substack.com): 403 Client Error: Forbidden for url: https://theconvivialsociety.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (www.garbageday.email): 404 Client Error: Not Found for url: https://www.garbageday.email/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (mattersoftech.substack.com): 403 Client Error: Forbidden for url: https://mattersoftech.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (multiversenewsletter.substack.com): 403 Client Error: Forbidden for url: https://multiversenewsletter.substack.com/feed
+[2026-03-22 14:03 UTC] Feed HTTP error (thereboot.com): 403 Client Error: Forbidden for url: https://thereboot.com/feed/
+[2026-03-22 14:03 UTC] Feed HTTP error (theprepared.com): 404 Client Error: Not Found for url: https://theprepared.com/newsletter/rss
+[2026-03-22 14:03 UTC] Feed HTTP error (www.media.mit.edu): 404 Client Error: Not Found for url: https://www.media.mit.edu/publications/rss/
+[2026-03-22 14:03 UTC] Feed HTTP error (www.media.mit.edu): 404 Client Error: Not Found for url: https://www.media.mit.edu/groups/lifelong-kindergarten/publications/rss/
+[2026-03-22 14:03 UTC] Feed HTTP error (www.media.mit.edu): 404 Client Error: Not Found for url: https://www.media.mit.edu/groups/social-machines/publications/rss/
+[2026-03-22 14:03 UTC] Feed HTTP error (www.media.mit.edu): 404 Client Error: Not Found for url: https://www.media.mit.edu/groups/personal-robots/publications/rss/
+[2026-03-22 14:03 UTC] Feed HTTP error (www.media.mit.edu): 404 Client Error: Not Found for url: https://www.media.mit.edu/groups/human-dynamics/publications/rss/

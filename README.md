@@ -13,12 +13,14 @@ Runs at 06:00, 12:00, and 18:00 UTC daily via GitHub Actions.
 
 ## Setup
 
-### 1. Add your Anthropic API key
+### 1. Add your Groq API key
 
 Go to: **GitHub repo → Settings → Secrets and variables → Actions → New repository secret**
 
-- Name: `ANTHROPIC_API_KEY`
-- Value: your key from [console.anthropic.com](https://console.anthropic.com)
+- Name: `GROQ_API_KEY`
+- Value: your key from [console.groq.com](https://console.groq.com) (free, no credit card required)
+
+> **To use OpenRouter instead:** change the secret name to `OPENROUTER_API_KEY`, set `base_url` to `https://openrouter.ai/api/v1` in `discovery.py`, and set `MODEL` to `meta-llama/llama-3.3-70b-instruct:free`.
 
 ### 2. Trigger a manual run (optional)
 

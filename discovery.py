@@ -1,12 +1,18 @@
 """
 Maximilian Discovery Engine
 Runs via GitHub Actions 3x/day.
-Fetches feeds, deduplicates, scores with Claude, commits digest.
+Fetches feeds, deduplicates, scores with an LLM, commits digest.
+
+LLM backend: Groq free tier (llama-3.3-70b-versatile) via OpenAI-compatible API.
+To switch to OpenRouter free tier instead, change:
+  base_url -> "https://openrouter.ai/api/v1"
+  api_key  -> os.environ["OPENROUTER_API_KEY"]
+  MODEL    -> "meta-llama/llama-3.3-70b-instruct:free"
 """
 
 import feedparser
 import requests
-import anthropic
+from openai import OpenAI
 import json
 import random
 import time
@@ -235,9 +241,12 @@ def deduplicate(entries: list[dict], seen: set) -> tuple[list[dict], set]:
     return fresh, new_hashes
 
 
-# ── CLAUDE SCORING ────────────────────────────────────────────────────────────
+# ── LLM SCORING ───────────────────────────────────────────────────────────────
 
-def score_batch(entries: list[dict], client: anthropic.Anthropic) -> list[dict]:
+MODEL = "llama-3.3-70b-versatile"  # Groq free tier
+
+
+def score_batch(entries: list[dict], client: OpenAI) -> list[dict]:
     if not entries:
         return entries
 
@@ -248,16 +257,15 @@ def score_batch(entries: list[dict], client: anthropic.Anthropic) -> list[dict]:
 
     for attempt in range(2):
         try:
-            response = client.messages.create(
-                model="claude-sonnet-4-6",
+            response = client.chat.completions.create(
+                model=MODEL,
                 max_tokens=2000,
-                system=PROFILE,
-                messages=[{
-                    "role": "user",
-                    "content": f"Score each item 1-10. Return a JSON array with objects: {{index, score, reason}}.\n\n{batch_text}"
-                }]
+                messages=[
+                    {"role": "system", "content": PROFILE},
+                    {"role": "user", "content": f"Score each item 1-10. Return a JSON array with objects: {{index, score, reason}}.\n\n{batch_text}"}
+                ]
             )
-            raw = response.content[0].text.strip()
+            raw = response.choices[0].message.content.strip()
             # Strip markdown fences if present
             if raw.startswith("```"):
                 raw = raw.split("```")[1]
@@ -284,7 +292,10 @@ def score_batch(entries: list[dict], client: anthropic.Anthropic) -> list[dict]:
 
 
 def score_all(entries: list[dict]) -> list[dict]:
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    client = OpenAI(
+        api_key=os.environ["GROQ_API_KEY"],
+        base_url="https://api.groq.com/openai/v1",
+    )
     scored = []
     for i in range(0, len(entries), 25):
         batch = entries[i:i + 25]

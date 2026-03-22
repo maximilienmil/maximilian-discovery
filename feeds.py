@@ -221,11 +221,9 @@ DISCOVERY_FEEDS = [
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5MZQRRVSB7kRCF_A", "podcast_selective"),  # Andrej Karpathy — deep-dive tutorials (Neural Networks: Zero to Hero)
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAg", "podcast_selective"),  # 3Blue1Brown — neural nets, transformers (visual, mathematical)
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg", "podcast_selective"),  # Two Minute Papers — AI research in 2 minutes
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCW1C2xOfXsIzPgjXyuhkw9g", "podcast"),  # Simons Institute — advanced CS/ML/theory talks
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UC9-y-6csu5WGm29I7JiwpnA", "podcast_selective"),  # Computerphile — CS fundamentals, AI concepts
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCBa5G_ESCn8Yd4vw5U-gIcg", "podcast_selective"),  # Stanford Online — CS229/CS224N/CS231N lecture recordings
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCnUYZLuoy1rq1aVMwx4aTzw", "podcast_selective"),  # Google DeepMind — AlphaFold, Gemini, research talks
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCi1TC2fLRvgBQNe-T4dp8Eg", "podcast_selective"),  # NeurIPS — conference talk recordings
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCj8shE7aIn4Yawwbo2FceCQ", "podcast"),  # Aleksa Gordić (AI Epiphany) — GNN, transformer walkthroughs
     ("https://www.youtube.com/feeds/videos.xml?channel_id=UCF9O8Vj-FEbRDA5DcDGz-Pg", "podcast_selective"),  # Yann LeCun — rare but high-signal talks
 

@@ -1,0 +1,37 @@
+name: Discovery Run
+
+on:
+  schedule:
+    - cron: '0 6,12,18 * * *'
+  workflow_dispatch:
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run discovery
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python discovery.py
+
+      - name: Commit results
+        run: |
+          git config user.name "discovery-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add digest.md seen_links.json feed_errors.log || true
+          git diff --staged --quiet || git commit -m "digest: $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push

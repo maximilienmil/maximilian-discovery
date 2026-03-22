@@ -28,7 +28,6 @@ from feeds import DISCOVERY_FEEDS, OPML_DOMAINS
 from profile import PROFILE
 
 SEEN_LINKS_FILE = "seen_links.json"
-EVERGREEN_FILE = "evergreen.json"
 ERRORS_FILE = "feed_errors.log"
 DIGEST_FILE = "digest.md"
 MAX_SEEN = 10_000
@@ -39,10 +38,8 @@ SCORE_THRESHOLD_MEDIUM = 5
 SCORE_THRESHOLD_TECH = 6        # minimum score for the Technical section
 SCORE_THRESHOLD_PODCAST = 7     # minimum score for standard podcast episodes
 SCORE_THRESHOLD_PODCAST_SEL = 8 # minimum score for selective podcast shows
-EVERGREEN_MIN_SCORE = 7         # minimum score to enter the evergreen archive
-EVERGREEN_MIN_AGE_DAYS = 14     # item must be this old before it can resurface
-EVERGREEN_COOLDOWN_DAYS = 30    # days before the same item can resurface again
-EVERGREEN_RESURFACE_N = 2       # how many archive picks to surface per run
+ARCHIVE_LOOKBACK_DAYS = 180     # extended lookback for sparse runs
+ARCHIVE_TRIGGER_THRESHOLD = 2   # fetch older content if podcast picks below this
 
 
 # ── LOGGING ───────────────────────────────────────────────────────────────────
@@ -75,86 +72,6 @@ def save_seen(seen: set):
     hashes = list(seen)[-MAX_SEEN:]
     with open(SEEN_LINKS_FILE, "w") as f:
         json.dump({"hashes": hashes, "updated": datetime.now(timezone.utc).isoformat()}, f)
-
-
-# ── EVERGREEN ARCHIVE ──────────────────────────────────────────────────────────
-
-def load_evergreen() -> list[dict]:
-    if os.path.exists(EVERGREEN_FILE):
-        try:
-            with open(EVERGREEN_FILE) as f:
-                return json.load(f).get("items", [])
-        except Exception:
-            return []
-    return []
-
-
-def save_evergreen(items: list[dict]):
-    with open(EVERGREEN_FILE, "w") as f:
-        json.dump({"items": items, "updated": datetime.now(timezone.utc).isoformat()}, f, indent=2)
-
-
-def update_evergreen(scored: list[dict], evergreen: list[dict]) -> list[dict]:
-    """Archive new high-scoring podcast and YouTube items."""
-    existing_links = {item["link"] for item in evergreen}
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    for e in scored:
-        source_type = e.get("source_type", "")
-        link = e.get("link", "")
-        is_podcast = source_type in ("podcast", "podcast_selective")
-        is_youtube = "youtube.com" in link or "youtu.be" in link
-        if (is_podcast or is_youtube) and e.get("score", 0) >= EVERGREEN_MIN_SCORE and link not in existing_links:
-            evergreen.append({
-                "title": e.get("title", ""),
-                "link": link,
-                "score": e.get("score", 0),
-                "reason": e.get("reason", ""),
-                "source": e.get("source", ""),
-                "source_type": source_type,
-                "published": e.get("published", ""),
-                "first_seen": today,
-                "last_resurfaced": None,
-            })
-            existing_links.add(link)
-    return evergreen
-
-
-def get_resurface_picks(evergreen: list[dict]) -> list[dict]:
-    """Select items eligible for resurfacing this run."""
-    today = datetime.now(timezone.utc)
-    eligible = []
-    for item in evergreen:
-        first_seen = item.get("first_seen", "")
-        last_resurfaced = item.get("last_resurfaced")
-        try:
-            if first_seen:
-                age = (today - datetime.fromisoformat(first_seen).replace(tzinfo=timezone.utc)).days
-                if age < EVERGREEN_MIN_AGE_DAYS:
-                    continue
-        except Exception:
-            pass
-        try:
-            if last_resurfaced:
-                cooldown = (today - datetime.fromisoformat(last_resurfaced).replace(tzinfo=timezone.utc)).days
-                if cooldown < EVERGREEN_COOLDOWN_DAYS:
-                    continue
-        except Exception:
-            pass
-        eligible.append(item)
-    if not eligible:
-        return []
-    eligible.sort(key=lambda x: x.get("score", 0), reverse=True)
-    pool = eligible[:max(EVERGREEN_RESURFACE_N * 3, 10)]
-    return random.sample(pool, min(EVERGREEN_RESURFACE_N, len(pool)))
-
-
-def mark_resurfaced(evergreen: list[dict], picks: list[dict]) -> list[dict]:
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    pick_links = {p["link"] for p in picks}
-    for item in evergreen:
-        if item["link"] in pick_links:
-            item["last_resurfaced"] = today
-    return evergreen
 
 
 def is_from_opml(url: str) -> bool:
@@ -267,6 +184,31 @@ def fetch_all() -> list[dict]:
     return all_entries
 
 
+def fetch_archive(seen: set) -> list[dict]:
+    """Fetch podcast/YouTube feeds with a long lookback, returning only unseen items."""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=ARCHIVE_LOOKBACK_DAYS)
+    entries = []
+    for url, source_type in DISCOVERY_FEEDS:
+        if source_type not in PODCAST_TYPES:
+            continue
+        label = urlparse(url).netloc or url[:50]
+        for e in fetch_feed(url, label, source_type):
+            # re-check cutoff against the extended window
+            pub = e.get("published", "")
+            if pub:
+                try:
+                    pub_dt = datetime.fromisoformat(pub).replace(tzinfo=timezone.utc)
+                    if pub_dt < cutoff:
+                        continue
+                except Exception:
+                    pass
+            h = url_hash(e["link"])
+            if h not in seen:
+                entries.append(e)
+        time.sleep(random.uniform(0.2, 0.6))
+    return entries
+
+
 def deduplicate(entries: list[dict], seen: set) -> tuple[list[dict], set]:
     fresh = []
     new_hashes = set()
@@ -342,7 +284,7 @@ def score_all(entries: list[dict]) -> list[dict]:
 
 # ── DIGEST GENERATION ─────────────────────────────────────────────────────────
 
-def generate_digest(entries: list[dict], total_checked: int, resurface: list[dict] | None = None) -> str:
+def generate_digest(entries: list[dict], total_checked: int, archive_picks: list[dict] | None = None) -> str:
     podcasts = [e for e in entries if e.get("source_type") in ("podcast", "podcast_selective")]
     rest = [e for e in entries if e.get("source_type") not in ("podcast", "podcast_selective")]
     discovery = [e for e in rest if e.get("source_type") != "technical"]
@@ -411,21 +353,21 @@ def generate_digest(entries: list[dict], total_checked: int, resurface: list[dic
                 lines.append(f"*{e['reason']}*")
             lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; {e.get('published', '')}</sub>\n")
 
-    if resurface:
-        lines.append("## From the Archives\n")
-        lines.append("*High-signal episodes worth revisiting:*\n")
-        for e in resurface:
+    if archive_picks:
+        lines.append("## Older Picks\n")
+        lines.append("*Fewer new items this cycle — surfacing relevant older content:*\n")
+        for e in archive_picks:
             lines.append(f"**[{e['title']}]({e['link']})** &nbsp;`{e.get('score')}/10`")
             if e.get("reason"):
                 lines.append(f"*{e['reason']}*")
-            lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; originally {e.get('published', '')} &nbsp;·&nbsp; first seen {e.get('first_seen', '')}</sub>\n")
+            lines.append(f"<sub>{e.get('source', '')} &nbsp;·&nbsp; {e.get('published', '')}</sub>\n")
 
     return "\n".join(lines)
 
 
 # ── TELEGRAM ──────────────────────────────────────────────────────────────────
 
-def send_telegram(entries: list[dict], total_checked: int, resurface: list[dict] | None = None):
+def send_telegram(entries: list[dict], total_checked: int, archive_picks: list[dict] | None = None):
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
     if not bot_token or not chat_id:
@@ -495,13 +437,12 @@ def send_telegram(entries: list[dict], total_checked: int, resurface: list[dict]
             if reason:
                 parts.append(f'  <i>{reason}</i>')
 
-    if resurface:
-        parts.append("\n<b>From the Archives</b>")
-        for e in resurface:
+    if archive_picks:
+        parts.append("\n<b>Older Picks</b>")
+        for e in archive_picks:
             title = esc(e["title"][:90])
             reason = esc(e.get("reason", "")[:100])
-            first_seen = e.get("first_seen", "")
-            parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code> <i>(first seen {first_seen})</i>')
+            parts.append(f'• <a href="{e["link"]}">{title}</a> <code>{e.get("score")}/10</code>')
             if reason:
                 parts.append(f'  <i>{reason}</i>')
 
@@ -556,23 +497,35 @@ def main():
 
     save_seen(seen | new_hashes)
 
-    # Evergreen archive: archive new high-scoring podcast/YouTube items, then pick resurfaces
-    evergreen = load_evergreen()
-    resurface_picks = get_resurface_picks(evergreen)
-    evergreen = update_evergreen(scored, evergreen)
-    if resurface_picks:
-        evergreen = mark_resurfaced(evergreen, resurface_picks)
-        print(f"Resurfacing {len(resurface_picks)} archive item(s).")
-    save_evergreen(evergreen)
+    # Sparse-run fallback: if podcast picks are thin, fetch older unseen content
+    podcast_picks_count = len([
+        e for e in scored
+        if e.get("source_type") in PODCAST_TYPES and e.get("score", 0) >= SCORE_THRESHOLD_PODCAST
+    ])
+    archive_picks = []
+    if podcast_picks_count < ARCHIVE_TRIGGER_THRESHOLD:
+        print(f"Sparse podcast picks ({podcast_picks_count}) — fetching older unseen content...")
+        updated_seen = seen | new_hashes
+        older = fetch_archive(updated_seen)
+        if older:
+            older_deduped, older_hashes = deduplicate(older, updated_seen)
+            if older_deduped:
+                older_scored = score_all(older_deduped)
+                save_seen(updated_seen | older_hashes)
+                archive_picks = sorted(
+                    [e for e in older_scored if e.get("score", 0) >= SCORE_THRESHOLD_PODCAST],
+                    key=lambda x: x.get("score", 0), reverse=True
+                )[:3]
+                print(f"Older picks found: {len(archive_picks)}")
 
-    digest = generate_digest(scored, len(fresh), resurface_picks)
+    digest = generate_digest(scored, len(fresh), archive_picks or None)
     with open(DIGEST_FILE, "w") as f:
         f.write(digest)
 
     high_count = len([e for e in scored if e.get("score", 0) >= SCORE_THRESHOLD_HIGH])
     print(f"Done. High-signal: {high_count}. Digest written to {DIGEST_FILE}.")
 
-    send_telegram(scored, len(fresh), resurface_picks)
+    send_telegram(scored, len(fresh), archive_picks or None)
 
 
 if __name__ == "__main__":

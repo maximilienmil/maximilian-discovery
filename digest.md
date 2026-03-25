@@ -1,67 +1,91 @@
-# Discovery Digest — March 24, 2026 · 11:54 UTC
+# Discovery Digest — March 25, 2026 · 11:53 UTC
 
-**0 must-read** · **0 worth a look** · **38 technical** · **0 podcast** · 73 items checked
+**0 must-read** · **4 worth a look** · **45 technical** · **1 podcast** · 78 items checked
 
 ---
 
+## Worth a Look
+
+**[Malicious litellm_init.pth in litellm 1.82.8 — credential stealer](https://simonwillison.net/2026/Mar/24/malicious-litellm/#atom-everything)** &nbsp;`7/10`
+*The article reports on a malicious credential stealer in the LiteLLM package, which has implications for AI safety and security.*
+<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-24</sub>
+
+**[Package Managers Need to Cool Down](https://simonwillison.net/2026/Mar/24/package-managers-need-to-cool-down/#atom-everything)** &nbsp;`6/10`
+*The article discusses the need for package managers to cool down, which may have implications for AI development and safety.*
+<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-24</sub>
+
+**[Meet the third cohort of Youth Ambassadors](https://www.childrenscommissioner.gov.uk/news-and-blogs/meet-the-third-cohort-of-youth-ambassadors/)** &nbsp;`6/10`
+*The article introduces the new Youth Ambassadors, who will play a central role in holding decision-makers accountable for change, which may have implications for youth digital rights and advocacy.*
+<sub>www.childrenscommissioner.gov.uk &nbsp;·&nbsp; 2026-03-24</sub>
+
+**[Auto mode for Claude Code](https://simonwillison.net/2026/Mar/24/auto-mode-for-claude-code/#atom-everything)** &nbsp;`5/10`
+*The article discusses the introduction of auto mode for Claude Code, which may have implications for AI development and safety.*
+<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-24</sub>
+
 ## Research & Technical
 
-**[Beyond Detection: Governing GenAI in Academic Peer Review as a Sociotechnical Challenge](https://arxiv.org/abs/2603.20214)** &nbsp;`9/10`
-*Investigates the sociotechnical challenges of governing GenAI in academic peer review, presenting a convergent mixed-method study that examines the use of large language models in peer review workflows.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Beyond Explanation: Evidentiary Rights for Algorithmic Accountability](https://arxiv.org/abs/2603.22716)** &nbsp;`9/10`
+*Argues that explanation without evidentiary access does not enable meaningful contestation, introducing a new conceptual framework for algorithmic accountability.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[The Arrival of AGI? When Expert Personas Exceed Expert Benchmarks](https://arxiv.org/abs/2603.20225)** &nbsp;`9/10`
-*Challenges the null finding that expert personas do not improve language model performance, demonstrating that this result was structurally predictable and highlighting the importance of understanding the mechanisms underlying language model performance.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[AI Mental Models: Learned Intuition and Deliberation in a Bounded Neural Architecture](https://arxiv.org/abs/2603.22561)** &nbsp;`9/10`
+*Investigates the division of labor between intuition and deliberation in a bounded neural architecture, which could be relevant to Maximilian's interest in cognitive and attention effects of technology.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Stability of AI Governance Systems: A Coupled Dynamics Model of Public Trust and Social Disruptions](https://arxiv.org/abs/2603.20248)** &nbsp;`9/10`
-*Develops a coupled dynamics model of public trust and social disruptions in AI governance systems, examining the stability of these systems and the importance of public trust in their legitimacy and sustainability.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Trained on Tokens, Calibrated on Concepts: The Emergence of Semantic Calibration in LLMs](https://machinelearning.apple.com/research/trained-on-tokens)** &nbsp;`9/10`
+*Discovers the emergence of semantic calibration in LLMs, which could be relevant to Maximilian's interest in AI capabilities and limitations.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-24</sub>
 
-**[Unpacking Interaction Profiles and Strategies in Human-AI Collaborative Problem Solving: A Cognitive Distribution and Regulation Perspective](https://arxiv.org/abs/2603.21288)** &nbsp;`9/10`
-*Examines the collaboration patterns and dynamics of human-AI collaboration in complex problem-solving, identifying distinct collaborative problem-solving modes and highlighting the importance of distributed cognition and regulation of learning.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[PopResume: Causal Fairness Evaluation of LLM/VLM Resume Screeners with Population-Representative Dataset](https://arxiv.org/abs/2603.22714)** &nbsp;`8/10`
+*Introduces PopResume, a population-representative resume dataset for causal fairness auditing of LLM- and VLM-based resume screening systems, which could change how Maximilian thinks about AI fairness.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Me, Myself, and $\pi$ : Evaluating and Explaining LLM Introspection](https://arxiv.org/abs/2603.20276)** &nbsp;`9/10`
-*Evaluates and explains LLM introspection, a critical aspect of AI systems, and provides new insights into the ability of large language models to assess and reason about their own cognitive processes.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Evidence of political bias in search engines and language models before major elections](https://arxiv.org/abs/2603.23474)** &nbsp;`8/10`
+*Develops a standardized methodology to audit search engines and language models for political bias, which could change how Maximilian thinks about AI and politics.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Measuring Research Convergence in Interdisciplinary Teams Using Large Language Models and Graph Analytics](https://arxiv.org/abs/2603.20204)** &nbsp;`8/10`
-*Introduces a novel, multi-layer, AI-driven analytical framework for mapping research convergence in interdisciplinary teams, integrating large language models, graph-based visualization and analytics, and human-in-the-loop evaluation.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[How Utilitarian Are OpenAI's Models Really? Replicating and Reinterpreting Pfeffer, Kr\"ugel, and Uhl (2025)](https://arxiv.org/abs/2603.22730)** &nbsp;`8/10`
+*Replicates and reinterprets a study on the utilitarianism of OpenAI's models, which could change how Maximilian thinks about AI and ethics.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[When Truth Misleads -- Phase-Aware Coherence Detection for Misinformation Correction Across Epistemic Communities](https://arxiv.org/abs/2603.20221)** &nbsp;`8/10`
-*Introduces a phase-aware coherence detection approach for misinformation correction across epistemic communities, highlighting the importance of delivering truth through the right channel and authority.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Learning to Trust: How Humans Mentally Recalibrate AI Confidence Signals](https://arxiv.org/abs/2603.22634)** &nbsp;`8/10`
+*Investigates whether humans can learn to mentally recalibrate AI confidence signals, which could change how Maximilian thinks about human-AI collaboration.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Characterizing the ability of LLMs to recapitulate Americans' distributional responses to public opinion polling questions across political issues](https://arxiv.org/abs/2603.20229)** &nbsp;`8/10`
-*Characterizes the ability of large language models to recapitulate Americans' distributional responses to public opinion polling questions, examining the potential of LLMs to augment human polling.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Three Years with Classroom AI in Introductory Programming: Shifts in Student Awareness, Interaction, and Performance](https://arxiv.org/abs/2603.22672)** &nbsp;`8/10`
+*Examines the shifts in student awareness, interaction, and performance over three years with classroom AI in introductory programming, which could change how Maximilian thinks about AI and education.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Writing literature reviews with AI: principles, hurdles and some lessons learned](https://arxiv.org/abs/2603.20235)** &nbsp;`8/10`
-*Presents a qualitative comparison of literature reviews produced with varying degrees of AI assistance, highlighting the potential of LLMs to generate dramatically different reviews depending on the selection of papers and the orientation of the review.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[The Efficiency Attenuation Phenomenon: A Computational Challenge to the Language of Thought Hypothesis](https://arxiv.org/abs/2603.22312)** &nbsp;`8/10`
+*Introduces the Efficiency Attenuation Phenomenon, a computational challenge to the Language of Thought hypothesis, which could change how Maximilian thinks about the nature of thought and AI.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**["Girl, I'm so Serious": CARE, a Capability Framework for Reproductive Equity in Human-AI Interaction](https://arxiv.org/abs/2603.20511)** &nbsp;`8/10`
-*Presents a capability framework for reproductive equity in human-AI interaction, highlighting the importance of ensuring that AI chatbots expand or constrain capabilities in a way that promotes equity and judgment-free access to information.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Intelligence Inertia: Physical Principles and Applications](https://arxiv.org/abs/2603.22347)** &nbsp;`8/10`
+*Presents a new framework for understanding intelligence and information processing, which could be relevant to Maximilian's interest in AI capabilities and limitations.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[When the Chain Breaks: Interactive Diagnosis of LLM Chain-of-Thought Reasoning Errors](https://arxiv.org/abs/2603.21286)** &nbsp;`8/10`
-*Introduces an interactive diagnosis approach for LLM chain-of-thought reasoning errors, facilitating trust calibration for users by providing transparent and explainable reasoning traces.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[From Static Templates to Dynamic Runtime Graphs: A Survey of Workflow Optimization for LLM Agents](https://arxiv.org/abs/2603.22386)** &nbsp;`8/10`
+*Provides a survey of workflow optimization methods for LLM agents, which could be relevant to Maximilian's interest in the future of knowledge work and AI capabilities.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Cerebra: Aligning Implicit Knowledge in Interactive SQL Authoring](https://arxiv.org/abs/2603.21363)** &nbsp;`8/10`
-*Introduces a system for aligning implicit knowledge in interactive SQL authoring, facilitating the use of LLM-driven tools for writing SQL queries and reducing the frequency of erroneous scripts.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Understanding LLM Performance Degradation in Multi-Instance Processing: The Roles of Instance Count and Context Length](https://arxiv.org/abs/2603.22608)** &nbsp;`8/10`
+*Examines the performance degradation of LLMs in multi-instance processing, which could be relevant to Maximilian's interest in AI capabilities and limitations.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[ProMAS: Proactive Error Forecasting for Multi-Agent Systems Using Markov Transition Dynamics](https://arxiv.org/abs/2603.20260)** &nbsp;`8/10`
-*Introduces ProMAS, a method for proactive error forecasting in multi-agent systems using Markov transition dynamics, a novel approach to improving system reliability.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Bridging the Know-Act Gap via Task-Level Autoregressive Reasoning](https://arxiv.org/abs/2603.22619)** &nbsp;`8/10`
+*Introduces a new concept of task-level autoregressive reasoning for bridging the know-act gap in LLMs, which could be relevant to Maximilian's interest in AI safety and alignment.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[FactorSmith: Agentic Simulation Generation via Markov Decision Process Decomposition with Planner-Designer-Critic Refinement](https://arxiv.org/abs/2603.20270)** &nbsp;`8/10`
-*Proposes FactorSmith, a framework for generating executable simulations from natural language specifications, which addresses a key challenge in large language model applications.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Between the Layers Lies the Truth: Uncertainty Estimation in LLMs Using Intra-Layer Local Information Scores](https://arxiv.org/abs/2603.22299)** &nbsp;`8/10`
+*Proposes a compact, per-instance uncertainty estimation method for LLMs using intra-layer local information scores, which could be relevant to Maximilian's interest in AI capabilities and limitations.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
 
-**[Deep reflective reasoning in interdependence constrained structured data extraction from clinical notes for digital health](https://arxiv.org/abs/2603.20435)** &nbsp;`8/10`
-*Presents deep reflective reasoning for extracting structured information from clinical notes, which is a challenging problem in natural language processing.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-24</sub>
+**[Latent Semantic Manifolds in Large Language Models](https://arxiv.org/abs/2603.22301)** &nbsp;`8/10`
+*Develops a mathematical framework for interpreting LLM hidden states as points on a latent semantic manifold, which could be relevant to Maximilian's interest in AI capabilities and limitations.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-25</sub>
+
+## Podcast Episodes
+
+**[DeepSeek Just Fixed One Of The Biggest Problems With AI](https://www.youtube.com/watch?v=DmtoVnTkQnM)** &nbsp;`8/10`
+*The DeepSeek paper introduces a novel solution to a significant problem in AI, with a link to the arXiv preprint and a GitHub repository, indicating a high level of technical depth and relevance to AI capabilities and limitations.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-24</sub>

@@ -1,6 +1,6 @@
 # Maximilian Discovery Engine
 
-A Python pipeline that ingests ~140 sources daily, scores every article against a relevance profile using an LLM, and surfaces the top results as a ranked digest. Built to solve a personal problem: keeping up with fast-moving research across AI safety, AI governance, youth digital rights, cyberpsychology, and HCI without manually checking dozens of feeds.
+A Python pipeline that ingests 140 RSS feeds daily, scores every article against a relevance profile using an LLM, and surfaces the top results as a ranked digest. Built to solve a personal problem: keeping up with fast-moving research across AI safety, AI governance, youth digital rights, cyberpsychology, and HCI without manually checking dozens of feeds.
 
 Runs autonomously via GitHub Actions. No human in the loop once configured.
 
@@ -10,7 +10,7 @@ Runs autonomously via GitHub Actions. No human in the loop once configured.
 140 RSS feeds → fetch & parse → deduplicate (rolling 10k-item store) → LLM relevance scoring (1-10) → ranked digest.md
 ```
 
-**Fetch.** Pulls from ~80 discovery feeds (arXiv cs.CY and cs.HC, academic journals, think tanks, researcher blogs, long-tail Substacks) plus per-account RSS for ~60 researchers and writers on X/Twitter via Nitter.
+**Fetch.** Pulls from 140 discovery feeds including arXiv cs.CY and cs.HC, academic journals, think tanks, researcher blogs, and long-tail Substacks.
 
 **Deduplicate.** Every processed URL is logged in a rolling `seen_links.json` committed back to the repo, preventing repeat surfacing across runs.
 
@@ -23,7 +23,7 @@ Runs autonomously via GitHub Actions. No human in the loop once configured.
 ```
 discovery.py    Core pipeline: fetch → dedup → score → write
 profile.py      Relevance criteria (edit this to change what surfaces)
-feeds.py        Feed list and X/Twitter accounts (edit to add/remove sources)
+feeds.py        Feed list (edit to add/remove sources)
 seen_links.json Rolling dedup store, persisted via git commits
 digest.md       Latest output
 ```
@@ -35,9 +35,9 @@ digest.md       Latest output
 | arXiv | cs.CY (Computers & Society), cs.HC (HCI), keyword searches | 5+ feeds |
 | Academic journals | First Monday, Big Data & Society, New Media & Society, Social Media + Society, ACM CHI | 8+ feeds |
 | Think tanks & orgs | Oxford Internet Institute, Berkman Klein, AI Now, Ada Lovelace, Alan Turing, Data & Society, CDT, EFF, 5Rights, RAND, 80,000 Hours | 15+ feeds |
-| Researcher blogs | Karpathy, Simon Willison, Gary Marcus, Zvi Mowshowitz, Scott Alexander, Chris Olah, Lilian Weng, Paul Christiano, Alignment Forum, LessWrong | 15+ feeds |
+| Researcher blogs | Karpathy, Simon Willison, Gary Marcus, Zvi Mowshowitz, Scott Alexander, Chris Olah, Lilian Weng, Paul Christiano, Alignment Forum, LessWrong | 20+ feeds |
 | Substacks | AI Snake Oil, Algorithmic Bridge, ChinAI, Reboot, Works in Progress, Asterisk, Real Life, Logic | 15+ feeds |
-| X/Twitter (via Nitter) | ~60 accounts including Karpathy, Andrew Ng, Yann LeCun, Timnit Gebru, danah boyd, Kate Crawford, Joy Buolamwini, Amy Orben | 60 accounts |
+| Podcasts | 80,000 Hours, Gradient Dissent, Machine Learning Street Talk, Lex Fridman | 10+ feeds |
 
 ## Setup
 

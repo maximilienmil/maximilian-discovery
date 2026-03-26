@@ -32,12 +32,9 @@ digest.md       Latest output
 
 | Category | Examples | Count |
 |----------|----------|-------|
-| arXiv | cs.CY (Computers & Society), cs.HC (HCI), keyword searches | 5+ feeds |
-| Academic journals | First Monday, Big Data & Society, New Media & Society, Social Media + Society, ACM CHI | 8+ feeds |
-| Think tanks & orgs | Oxford Internet Institute, Berkman Klein, AI Now, Ada Lovelace, Alan Turing, Data & Society, CDT, EFF, 5Rights, RAND, 80,000 Hours | 15+ feeds |
-| Researcher blogs | Karpathy, Simon Willison, Gary Marcus, Zvi Mowshowitz, Scott Alexander, Chris Olah, Lilian Weng, Paul Christiano, Alignment Forum, LessWrong | 20+ feeds |
-| Substacks | AI Snake Oil, Algorithmic Bridge, ChinAI, Reboot, Works in Progress, Asterisk, Real Life, Logic | 15+ feeds |
-| Podcasts | 80,000 Hours, Gradient Dissent, Machine Learning Street Talk, Lex Fridman | 10+ feeds |
+| Research & Technical | arXiv cs.CY/cs.HC, First Monday, New Media & Society, Social Media + Society, ACM CHI, Distill | 64 feeds |
+| Discovery | Researcher blogs, Substacks, think tanks (Berkman Klein, OII, Alan Turing, EFF, etc), LessWrong, Alignment Forum | 49 feeds |
+| Podcasts | Lex Fridman, Future of Life, TWIML, Gradient Dissent, Machine Learning Street Talk, and more | 27 feeds |
 
 ## Setup
 

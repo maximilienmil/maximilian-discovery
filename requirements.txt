@@ -1,5 +1,15 @@
-feedparser>=6.0
-requests>=2.31
-openai>=1.0
-beautifulsoup4>=4.12
-lxml>=5.0
+feedparser==6.0.11
+requests==2.32.3
+openai==1.58.1
+beautifulsoup4==4.12.3
+lxml==5.3.0
+pytest==8.3.4
+ruff==0.8.6
+# ML evaluation dependencies
+sentence-transformers==3.3.1
+scikit-learn==1.6.0
+numpy==1.26.4
+matplotlib==3.9.3
+umap-learn==0.5.7
+jupyter==1.1.1
+ipykernel==6.29.5

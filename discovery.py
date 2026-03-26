@@ -1,31 +1,46 @@
 """
-Maximilian Discovery Engine
-Runs via GitHub Actions 3x/day.
+Discovery Engine — automated RSS discovery pipeline.
+
 Fetches feeds, deduplicates, scores with an LLM, commits digest, pushes to Telegram.
 
 LLM backend: Groq free tier (llama-3.3-70b-versatile) via OpenAI-compatible API.
-To switch to OpenRouter free tier instead, change:
-  base_url -> "https://openrouter.ai/api/v1"
-  api_key  -> os.environ["OPENROUTER_API_KEY"]
-  MODEL    -> "meta-llama/llama-3.3-70b-instruct:free"
-
 Telegram: set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in GitHub secrets.
-If not set, Telegram is silently skipped.
+
+Scoring methods:
+- LLM-based (default): Uses Groq API to score articles against relevance profile
+- Embedding-based: Uses sentence-transformers for offline scoring (--use-embeddings)
 """
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import logging
+import os
+import random
+import re
+import time
+from datetime import datetime, timedelta, timezone
+from typing import TYPE_CHECKING
+from urllib.parse import urlparse
 
 import feedparser
 import requests
 from openai import OpenAI
-import json
-import random
-import time
-import os
-import hashlib
-from datetime import datetime, timedelta, timezone
-from urllib.parse import urlparse
 
 from feeds import DISCOVERY_FEEDS, OPML_DOMAINS
 from profile import PROFILE
+
+if TYPE_CHECKING:
+    from feedparser import FeedParserDict
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 SEEN_LINKS_FILE = "seen_links.json"
 ERRORS_FILE = "feed_errors.log"
@@ -42,61 +57,69 @@ ARCHIVE_LOOKBACK_DAYS = 180     # extended lookback for sparse runs
 ARCHIVE_TRIGGER_THRESHOLD = 2   # fetch older content if podcast picks below this
 
 
-# ── LOGGING ───────────────────────────────────────────────────────────────────
+# ── ERROR LOGGING ─────────────────────────────────────────────────────────────
 
-def log_error(msg: str):
+def log_error(msg: str) -> None:
+    """Log error to file and stderr."""
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     with open(ERRORS_FILE, "a") as f:
         f.write(f"[{ts}] {msg}\n")
-    print(f"ERROR: {msg}")
+    logging.error(msg)
 
 
 # ── DEDUPLICATION ─────────────────────────────────────────────────────────────
 
 def url_hash(url: str) -> str:
+    """Return truncated SHA-256 hash of a URL for deduplication."""
     return hashlib.sha256(url.encode()).hexdigest()[:16]
 
 
-def load_seen() -> set:
+def load_seen() -> set[str]:
+    """Load previously seen URL hashes from disk."""
     if os.path.exists(SEEN_LINKS_FILE):
         try:
             with open(SEEN_LINKS_FILE) as f:
                 data = json.load(f)
                 return set(data.get("hashes", []))
-        except Exception:
+        except (json.JSONDecodeError, OSError):
             return set()
     return set()
 
 
-def save_seen(seen: set):
+def save_seen(seen: set[str]) -> None:
+    """Persist seen URL hashes to disk, keeping only the most recent MAX_SEEN."""
     hashes = list(seen)[-MAX_SEEN:]
     with open(SEEN_LINKS_FILE, "w") as f:
         json.dump({"hashes": hashes, "updated": datetime.now(timezone.utc).isoformat()}, f)
 
 
 def is_from_opml(url: str) -> bool:
+    """Check if URL domain is in the OPML exclusion list."""
     try:
-        domain = urlparse(url).netloc.lower().lstrip("www.")
+        netloc = urlparse(url).netloc.lower()
+        # Strip www. prefix (after lowercasing)
+        domain = netloc[4:] if netloc.startswith("www.") else netloc
         for known in OPML_DOMAINS:
             if domain == known or domain.endswith("." + known):
                 return True
-    except Exception:
+    except (ValueError, AttributeError):
         pass
     return False
 
 
 # ── FEED FETCHING ─────────────────────────────────────────────────────────────
 
-def parse_date(entry) -> datetime | None:
+def parse_date(entry: object) -> datetime | None:
+    """Extract publication date from a feedparser entry."""
     if hasattr(entry, "published_parsed") and entry.published_parsed:
         try:
             return datetime(*entry.published_parsed[:6], tzinfo=timezone.utc)
-        except Exception:
+        except (TypeError, ValueError):
             pass
     if hasattr(entry, "updated_parsed") and entry.updated_parsed:
         try:
             return datetime(*entry.updated_parsed[:6], tzinfo=timezone.utc)
-        except Exception:
+        except (TypeError, ValueError):
             pass
     return None
 
@@ -105,13 +128,14 @@ PODCAST_TYPES = ("podcast", "podcast_selective")
 LOOKBACK_DAYS_PODCAST = 30  # podcasts release infrequently; look back further
 
 
-def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
-    entries = []
+def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict[str, str]]:
+    """Fetch and parse a single RSS feed, returning normalized entries."""
+    entries: list[dict[str, str]] = []
     days = LOOKBACK_DAYS_PODCAST if source_type in PODCAST_TYPES else LOOKBACK_DAYS
     cutoff = datetime.now(timezone.utc) - timedelta(days=days)
     try:
         # Try requests first (handles encoding better, avoids lxml strictness)
-        feed = None
+        feed: FeedParserDict | None = None
         try:
             r = requests.get(
                 url,
@@ -124,7 +148,7 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
                     r.content,
                     response_headers={"content-type": r.headers.get("content-type", "application/rss+xml")},
                 )
-        except Exception:
+        except requests.RequestException:
             pass
 
         # Fall back to feedparser direct fetch if requests failed or returned no entries
@@ -167,40 +191,40 @@ def fetch_feed(url: str, source_label: str, source_type: str) -> list[dict]:
                 "source_type": source_type,
                 "published": published.strftime("%Y-%m-%d") if published else "",
             })
-    except Exception as e:
+    except requests.RequestException as e:
         log_error(f"Feed fetch error ({source_label}): {e}")
 
     return entries
 
 
-def fetch_all() -> list[dict]:
-    all_entries = []
+def fetch_all() -> list[dict[str, str]]:
+    """Fetch all configured feeds and return combined entries."""
+    all_entries: list[dict[str, str]] = []
     for url, source_type in DISCOVERY_FEEDS:
         label = urlparse(url).netloc or url[:50]
         entries = fetch_feed(url, label, source_type)
         all_entries.extend(entries)
         time.sleep(random.uniform(0.2, 0.6))
-    print(f"Total entries fetched: {len(all_entries)}")
+    logging.info("Total entries fetched: %d", len(all_entries))
     return all_entries
 
 
-def fetch_archive(seen: set) -> list[dict]:
-    """Fetch podcast/YouTube feeds with a long lookback, returning only unseen items."""
+def fetch_archive(seen: set[str]) -> list[dict[str, str]]:
+    """Fetch podcast feeds with extended lookback, returning only unseen items."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=ARCHIVE_LOOKBACK_DAYS)
-    entries = []
+    entries: list[dict[str, str]] = []
     for url, source_type in DISCOVERY_FEEDS:
         if source_type not in PODCAST_TYPES:
             continue
         label = urlparse(url).netloc or url[:50]
         for e in fetch_feed(url, label, source_type):
-            # re-check cutoff against the extended window
             pub = e.get("published", "")
             if pub:
                 try:
                     pub_dt = datetime.fromisoformat(pub).replace(tzinfo=timezone.utc)
                     if pub_dt < cutoff:
                         continue
-                except Exception:
+                except ValueError:
                     pass
             h = url_hash(e["link"])
             if h not in seen:
@@ -209,9 +233,12 @@ def fetch_archive(seen: set) -> list[dict]:
     return entries
 
 
-def deduplicate(entries: list[dict], seen: set) -> tuple[list[dict], set]:
-    fresh = []
-    new_hashes = set()
+def deduplicate(
+    entries: list[dict[str, str]], seen: set[str]
+) -> tuple[list[dict[str, str]], set[str]]:
+    """Remove entries already seen, return fresh entries and their hashes."""
+    fresh: list[dict[str, str]] = []
+    new_hashes: set[str] = set()
     for e in entries:
         h = url_hash(e["link"])
         if h not in seen and h not in new_hashes:
@@ -225,12 +252,13 @@ def deduplicate(entries: list[dict], seen: set) -> tuple[list[dict], set]:
 MODEL = "llama-3.3-70b-versatile"  # Groq free tier
 
 
-def score_batch(entries: list[dict], client: OpenAI) -> list[dict]:
+def score_batch(entries: list[dict[str, str | int]], client: OpenAI) -> list[dict[str, str | int]]:
+    """Score a batch of entries using the LLM, returning entries with scores."""
     if not entries:
         return entries
 
     batch_text = "\n\n".join([
-        f"[{i}] SOURCE: {e['source']}\nTITLE: {e['title']}\nSUMMARY: {e['summary'][:400]}"
+        f"[{i}] SOURCE: {e['source']}\nTITLE: {e['title']}\nSUMMARY: {str(e.get('summary', ''))[:400]}"
         for i, e in enumerate(entries)
     ])
 
@@ -256,7 +284,7 @@ def score_batch(entries: list[dict], client: OpenAI) -> list[dict]:
                     entries[idx]["score"] = s.get("score", 0)
                     entries[idx]["reason"] = s.get("reason", "")
             return entries
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - need to catch all API/parsing errors
             if attempt == 0:
                 log_error(f"Score batch error (attempt 1): {e} — retrying")
                 time.sleep(5)
@@ -269,12 +297,13 @@ def score_batch(entries: list[dict], client: OpenAI) -> list[dict]:
     return entries
 
 
-def score_all(entries: list[dict]) -> list[dict]:
+def score_all_llm(entries: list[dict[str, str | int]]) -> list[dict[str, str | int]]:
+    """Score all entries using LLM in batches of 25."""
     client = OpenAI(
         api_key=os.environ["GROQ_API_KEY"],
         base_url="https://api.groq.com/openai/v1",
     )
-    scored = []
+    scored: list[dict[str, str | int]] = []
     for i in range(0, len(entries), 25):
         batch = entries[i:i + 25]
         scored.extend(score_batch(batch, client))
@@ -282,9 +311,32 @@ def score_all(entries: list[dict]) -> list[dict]:
     return scored
 
 
+def score_all_embeddings(entries: list[dict[str, str | int]]) -> list[dict[str, str | int]]:
+    """Score all entries using sentence-transformer embeddings (offline, no API key)."""
+    from evaluate_embeddings import score_batch_embeddings
+    return score_batch_embeddings(entries)
+
+
+def score_all(entries: list[dict[str, str | int]]) -> list[dict[str, str | int]]:
+    """Score entries using configured method (LLM or embeddings)."""
+    use_embeddings = os.environ.get("USE_EMBEDDINGS", "").lower() in ("1", "true", "yes")
+    
+    if use_embeddings:
+        logging.info("Scoring with embedding-based scorer (USE_EMBEDDINGS=true)")
+        return score_all_embeddings(entries)
+    else:
+        logging.info("Scoring with LLM-based scorer")
+        return score_all_llm(entries)
+
+
 # ── DIGEST GENERATION ─────────────────────────────────────────────────────────
 
-def generate_digest(entries: list[dict], total_checked: int, archive_picks: list[dict] | None = None) -> str:
+def generate_digest(
+    entries: list[dict[str, str | int]],
+    total_checked: int,
+    archive_picks: list[dict[str, str | int]] | None = None,
+) -> str:
+    """Generate markdown digest from scored entries."""
     podcasts = [e for e in entries if e.get("source_type") in ("podcast", "podcast_selective")]
     rest = [e for e in entries if e.get("source_type") not in ("podcast", "podcast_selective")]
     discovery = [e for e in rest if e.get("source_type") != "technical"]
@@ -367,11 +419,16 @@ def generate_digest(entries: list[dict], total_checked: int, archive_picks: list
 
 # ── TELEGRAM ──────────────────────────────────────────────────────────────────
 
-def send_telegram(entries: list[dict], total_checked: int, archive_picks: list[dict] | None = None):
+def send_telegram(
+    entries: list[dict[str, str | int]],
+    total_checked: int,
+    archive_picks: list[dict[str, str | int]] | None = None,
+) -> None:
+    """Send digest summary to Telegram, if configured."""
     bot_token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
     if not bot_token or not chat_id:
-        print("Telegram not configured — skipping.")
+        logging.info("Telegram not configured — skipping.")
         return
 
     podcasts = [e for e in entries if e.get("source_type") in ("podcast", "podcast_selective")]
@@ -448,7 +505,6 @@ def send_telegram(entries: list[dict], total_checked: int, archive_picks: list[d
 
     msg = "\n".join(parts)
     if len(msg) > 4000:
-        import re
         truncated = msg[:3950]
         truncated = re.sub(r'<[^>]*$', '', truncated)  # remove any incomplete tag at the cut point
         msg = truncated + "\n\n<i>[truncated]</i>"
@@ -465,34 +521,54 @@ def send_telegram(entries: list[dict], total_checked: int, archive_picks: list[d
             timeout=15,
         )
         if r.status_code == 200:
-            print("Telegram: sent.")
+            logging.info("Telegram: sent.")
         else:
             log_error(f"Telegram send failed: {r.status_code} {r.text[:200]}")
-    except Exception as e:
+    except requests.RequestException as e:
         log_error(f"Telegram exception: {e}")
 
 
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 
-def main():
-    print("=== Maximilian Discovery Engine ===")
-    print(f"Run time: {datetime.now(timezone.utc).isoformat()}")
+def parse_args() -> argparse.Namespace:
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Discovery Engine: RSS aggregation with LLM scoring",
+    )
+    parser.add_argument(
+        "--use-embeddings",
+        action="store_true",
+        help="Use embedding-based scorer instead of LLM (offline, no API key needed)",
+    )
+    return parser.parse_args()
 
-    print("Fetching feeds...")
+
+def main() -> None:
+    """Run the discovery pipeline: fetch, dedupe, score, generate digest."""
+    args = parse_args()
+    
+    # Set env var for score_all() to read
+    if args.use_embeddings:
+        os.environ["USE_EMBEDDINGS"] = "true"
+    
+    logging.info("=== Discovery Engine ===")
+    logging.info("Run time: %s", datetime.now(timezone.utc).isoformat())
+
+    logging.info("Fetching feeds...")
     all_entries = fetch_all()
 
     seen = load_seen()
     fresh, new_hashes = deduplicate(all_entries, seen)
-    print(f"New after dedup: {len(fresh)} (seen pool: {len(seen)})")
+    logging.info("New after dedup: %d (seen pool: %d)", len(fresh), len(seen))
 
     if not fresh:
         digest = f"# Discovery Digest — {datetime.now(timezone.utc).strftime('%B %d, %Y · %H:%M UTC')}\n\n*No new items this cycle.*"
         with open(DIGEST_FILE, "w") as f:
             f.write(digest)
-        print("Nothing new. Digest written.")
+        logging.info("Nothing new. Digest written.")
         return
 
-    print(f"Scoring {len(fresh)} items...")
+    logging.info("Scoring %d items...", len(fresh))
     scored = score_all(fresh)
 
     save_seen(seen | new_hashes)
@@ -502,9 +578,9 @@ def main():
         e for e in scored
         if e.get("source_type") in PODCAST_TYPES and e.get("score", 0) >= SCORE_THRESHOLD_PODCAST
     ])
-    archive_picks = []
+    archive_picks: list[dict[str, str | int]] = []
     if podcast_picks_count < ARCHIVE_TRIGGER_THRESHOLD:
-        print(f"Sparse podcast picks ({podcast_picks_count}) — fetching older unseen content...")
+        logging.info("Sparse podcast picks (%d) — fetching older unseen content...", podcast_picks_count)
         updated_seen = seen | new_hashes
         older = fetch_archive(updated_seen)
         if older:
@@ -516,14 +592,14 @@ def main():
                     [e for e in older_scored if e.get("score", 0) >= SCORE_THRESHOLD_PODCAST],
                     key=lambda x: x.get("score", 0), reverse=True
                 )[:3]
-                print(f"Older picks found: {len(archive_picks)}")
+                logging.info("Older picks found: %d", len(archive_picks))
 
     digest = generate_digest(scored, len(fresh), archive_picks or None)
     with open(DIGEST_FILE, "w") as f:
         f.write(digest)
 
     high_count = len([e for e in scored if e.get("score", 0) >= SCORE_THRESHOLD_HIGH])
-    print(f"Done. High-signal: {high_count}. Digest written to {DIGEST_FILE}.")
+    logging.info("Done. High-signal: %d. Digest written to %s.", high_count, DIGEST_FILE)
 
     send_telegram(scored, len(fresh), archive_picks or None)
 

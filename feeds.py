@@ -1,17 +1,19 @@
 """
-All feed sources for the discovery engine.
+Feed configuration for the discovery engine.
 
-OPML_DOMAINS: domains already covered by Maximilian's NetNewsWire — articles from these are dropped.
-DISCOVERY_FEEDS: list of (url, source_type) tuples.
-  "technical"          → arXiv, ML research blogs, journals → "Research & Technical" section
-  "discovery"          → niche Substacks, think tanks, longform → main digest sections
-  "podcast"            → podcast episodes, score threshold 7+ → "Podcast Episodes" section
-  "podcast_selective"  → curated shows where only the best episodes matter, score threshold 8+
+OPML_DOMAINS: domains already covered by the user's RSS reader — articles dropped before scoring.
+DISCOVERY_FEEDS: list of (url, source_type) tuples defining what to fetch.
+
+Source types:
+  - "technical"          → arXiv, ML research blogs, journals → "Research & Technical" section
+  - "discovery"          → niche Substacks, think tanks, longform → main digest sections
+  - "podcast"            → podcast episodes, score threshold 7+ → "Podcast Episodes" section
+  - "podcast_selective"  → curated shows where only the best episodes matter, score threshold 8+
 """
 
-# Domains from Subscriptions-iCloud.opml — dropped before scoring
+# Domains from user's RSS reader — dropped before scoring
 # NOTE: alignment.anthropic.com intentionally removed — user wants it surfaced
-OPML_DOMAINS = {
+OPML_DOMAINS: set[str] = {
     "bwog.com", "reddit.com", "columbiaspectator.com", "sundial-cu.org",
     "news.columbia.edu", "grcglobalgroup.substack.com",
     "bain.com", "bcg.com", "bigthink.com", "letters.thedankoe.com",
@@ -38,7 +40,7 @@ OPML_DOMAINS = {
     "kill-the-newsletter.com",
 }
 
-DISCOVERY_FEEDS = [
+DISCOVERY_FEEDS: list[tuple[str, str]] = [
 
     # ══ TECHNICAL ═════════════════════════════════════════════════════════════
     # Goes into "Research & Technical" section. Score threshold: 6+

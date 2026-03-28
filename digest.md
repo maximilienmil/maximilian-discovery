@@ -1,87 +1,57 @@
-# Discovery Digest — March 27, 2026 · 11:47 UTC
+# Discovery Digest — March 28, 2026 · 11:37 UTC
 
-**1 must-read** · **3 worth a look** · **45 technical** · **0 podcast** · 75 items checked
+**1 must-read** · **3 worth a look** · **6 technical** · **1 podcast** · 25 items checked
 
 ---
 
 ## Must Read
 
-**[Quantization from the ground up](https://simonwillison.net/2026/Mar/26/quantization-from-the-ground-up/#atom-everything)** &nbsp;`8/10`
-*The article explains quantization from the ground up, which is a relevant topic in AI and machine learning.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-26</sub>
+**[Statement from the Children’s Commissioner on new screen time guidance for parents of under-5s](https://www.childrenscommissioner.gov.uk/news-and-blogs/statement-from-the-childrens-commissioner-on-new-screen-time-guidance-for-parents-of-under-5s/)** &nbsp;`8/10`
+*Provides guidance on screen time for children under 5, with implications for understanding the cognitive effects of technology on young children, directly relevant to the primary domains of interest.*
+<sub>www.childrenscommissioner.gov.uk &nbsp;·&nbsp; 2026-03-27</sub>
 
 ## Worth a Look
 
-**[We Rewrote JSONata with AI in a Day, Saved $500K/Year](https://simonwillison.net/2026/Mar/27/vine-porting-jsonata/#atom-everything)** &nbsp;`7/10`
-*The article discusses a case study of rewriting JSONata with AI, which could provide insights into the capabilities and limitations of AI systems.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-27</sub>
+**[The algorithm will see you now, Out Loud](https://www.worksinprogress.news/p/the-algorithm-will-see-you-now-out)** &nbsp;`7/10`
+*Explores the challenges of replacing human radiologists with AI, discussing the complexities and limitations of current AI systems in medical imaging, with direct relevance to the primary domains of interest, particularly the cognitive effects of technology and AI safety.*
+<sub>www.worksinprogress.news &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[My minute-by-minute response to the LiteLLM malware attack](https://simonwillison.net/2026/Mar/26/response-to-the-litellm-malware-attack/#atom-everything)** &nbsp;`6/10`
-*The post shares a transcript of a response to a malware attack, which could provide insights into the security aspects of AI systems.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-26</sub>
+**[Escaping the Ogallala trap](https://www.worksinprogress.news/p/its-time-to-tax-driverless-cars)** &nbsp;`6/10`
+*Discusses the concept of omnigridlock and its potential implications for technology and society, though the connection to the primary domains of interest could be more explicitly developed.*
+<sub>www.worksinprogress.news &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[Stop explaining yourself to your AI with Alex Green, cofounder of Littlebird](https://nesslabs.com/littlebird-featured-tool?utm_source=rss&utm_medium=rss&utm_campaign=littlebird-featured-tool)** &nbsp;`5/10`
-*The post discusses an AI assistant designed to close the gap between memory and computer, which is a related topic, but may not provide novel insights or contributions.*
-<sub>nesslabs.com &nbsp;·&nbsp; 2026-03-26</sub>
+**[Solving problems with the Karpathy Loop](https://www.exponentialview.co/p/solving-problems-with-the-karpathy)** &nbsp;`5/10`
+*Mentions the Karpathy Loop in the context of solving problems, which could be relevant to AI and technology, but lacks a clear and direct connection to the primary domains of interest without further context or explanation.*
+<sub>www.exponentialview.co &nbsp;·&nbsp; 2026-03-27</sub>
 
 ## Research & Technical
 
-**[On the Foundations of Trustworthy Artificial Intelligence](https://arxiv.org/abs/2603.24904)** &nbsp;`10/10`
-*Proves that platform-deterministic inference is necessary and sufficient for trustworthy AI, introducing a groundbreaking framework for trustworthiness.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[Introducing the AE Alignment Podcast (Ep. 1: Endogenous Steering Resistance with Alex McKenzie)](https://www.lesswrong.com/posts/2CBfFB77j48Zp98ZF/introducing-the-ae-alignment-podcast-ep-1-endogenous-1)** &nbsp;`9/10`
+*Introduces the AE Alignment Podcast, a new series focused on AI safety and alignment, featuring interviews with researchers and experts in the field, providing novel insights and discussions on directly relevant topics.*
+<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[Auditing the Impact of Cross-Site Web Tracking on YouTube Political and Misinformation Recommendations](https://arxiv.org/abs/2603.25302)** &nbsp;`9/10`
-*Presents an empirical study on the impact of cross-site web tracking on YouTube political and misinformation recommendations, highlighting the role of the recommendation algorithm in the spread of misinformation.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[To Infinity and Beyond: Tool-Use Unlocks Length Generalization in State Space Models](https://machinelearning.apple.com/research/to-infinity)** &nbsp;`8/10`
+*Introduces a theoretical result on the limitations of State Space Models in solving long-form generation problems, with implications for sequence modeling and language generation.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[Gaze patterns predict preference and confidence in pairwise AI image evaluation](https://arxiv.org/abs/2603.24849)** &nbsp;`9/10`
-*Explores the relationship between gaze patterns, preference, and confidence in pairwise AI image evaluation, using eye-tracking to reveal preference formation during human judgments.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[What Makes a Good Terminal Bench Task](https://www.lesswrong.com/posts/gBwHZSmvfCA5oGCEJ/what-makes-a-good-terminal-bench-task)** &nbsp;`8/10`
+*Introduces the concept of terminal bench tasks and emphasizes the importance of designing tasks to test an agent's capabilities, rather than simply helping it succeed, with implications for AI evaluation and alignment.*
+<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-03-28</sub>
 
-**[A Public Theory of Distillation Resistance via Constraint-Coupled Reasoning Architectures](https://arxiv.org/abs/2603.25022)** &nbsp;`9/10`
-*Introduces a public theory of distillation resistance via constraint-coupled reasoning architectures, addressing concerns about knowledge distillation, model extraction, and behavior transfer in AI.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[Athena: Intermediate Representations for Iterative Scaffolded App Generation with an LLM](https://machinelearning.apple.com/research/athena)** &nbsp;`7/10`
+*Presents a novel approach to generating user interface code using a Large Language Model, with a focus on creating intermediate representations for iterative scaffolded app generation.*
+<sub>machinelearning.apple.com &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[SafeMath: Inference-time Safety improves Math Accuracy](https://arxiv.org/abs/2603.25201)** &nbsp;`9/10`
-*Investigates the problem of harmful and toxic mathematical word problems, and presents a framework for evaluating language models for harmful manipulation.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[ControlAI 2025 Impact Report](https://www.alignmentforum.org/posts/BwfydMhjuroqiZs4x/controlai-2025-impact-report)** &nbsp;`6/10`
+*Highlights key excerpts from the ControlAI 2025 Impact Report, which may be relevant to AI safety and alignment, but lacks a direct link to the report and detailed information on its contents.*
+<sub>www.alignmentforum.org &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[Evaluating Language Models for Harmful Manipulation](https://arxiv.org/abs/2603.25326)** &nbsp;`9/10`
-*Introduces a framework for evaluating harmful AI manipulation via context-specific human-AI interaction studies, assessing an AI model with 10,101 participants.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[Miniature Cities Might Be the Non-Coercive Schools Many Thought Were Impossible](https://www.lesswrong.com/posts/CbgbtK2vPvFuEjN2j/miniature-cities-might-be-the-non-coercive-schools-many)** &nbsp;`6/10`
+*Discusses the concept of miniature cities as non-coercive schools, exploring ideas on education and learning, with potential implications for understanding how AI and technology could influence or support novel educational structures.*
+<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-03-27</sub>
 
-**[Examining the Effect of Explanations of AI Privacy Redaction in AI-mediated Interactions](https://arxiv.org/abs/2603.24735)** &nbsp;`9/10`
-*Investigates how users perceive AI-mediated interventions in privacy-sensitive domains, highlighting the need for transparent and explainable AI systems.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+## Podcast Episodes
 
-**[More Than "Means to an End": Supporting Reasoning with Transparently Designed AI Data Science Processes](https://arxiv.org/abs/2603.24877)** &nbsp;`9/10`
-*Introduces a framework for supporting reasoning with transparently designed AI data science processes, emphasizing the need for explainable and interpretable AI systems.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[PII Shield: A Browser-Level Overlay for User-Controlled Personal Identifiable Information (PII) Management in AI Interactions](https://arxiv.org/abs/2603.24895)** &nbsp;`9/10`
-*Proposes a browser-level overlay for user-controlled personal identifiable information management in AI interactions, addressing concerns about data privacy and security.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[Co-designing for the Triad: Design Considerations for Collaborative Decision-Making Technologies in Pediatric Chronic Care](https://arxiv.org/abs/2603.24993)** &nbsp;`9/10`
-*Explores the co-design of collaborative decision-making technologies in pediatric chronic care, emphasizing the importance of user-centered design in AI-driven healthcare.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[Beyond Benchmarks: How Users Evaluate AI Chat Assistants](https://arxiv.org/abs/2603.25220)** &nbsp;`9/10`
-*Presents a cross-platform survey of AI chat users, comparing satisfaction, adoption drivers, and use cases across competing platforms, highlighting the need for user-centered design in AI-driven systems.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[When Is Collective Intelligence a Lottery? Multi-Agent Scaling Laws for Memetic Drift in LLMs](https://arxiv.org/abs/2603.24676)** &nbsp;`9/10`
-*Explores the concept of collective intelligence in multi-agent systems powered by large language models, highlighting the need for systematic studies of their outcomes and decision-making processes.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[Formal Semantics for Agentic Tool Protocols: A Process Calculus Approach](https://arxiv.org/abs/2603.24747)** &nbsp;`9/10`
-*Presents a process calculus approach to formal semantics for agentic tool protocols, offering a rigorous foundation for agent protocol verification.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[How Far Are Vision-Language Models from Constructing the Real World? A Benchmark for Physical Generative Reasoning](https://arxiv.org/abs/2603.24866)** &nbsp;`9/10`
-*Proposes a benchmark for physical generative reasoning in vision-language models, which could help evaluate their ability to construct the real world.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
-
-**[Grokking as a Falsifiable Finite-Size Transition](https://arxiv.org/abs/2603.24746)** &nbsp;`9/10`
-*Proposes a falsifiable finite-size transition framework for understanding grokking in machine learning, which could have significant implications for AI safety and interpretability.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-03-27</sub>
+**[DeepMind’s New AI Just Changed Science Forever](https://www.youtube.com/watch?v=Io_GqmbNBbY)** &nbsp;`9/10`
+*Discusses a new AI model from DeepMind and its potential impact on science, with direct relevance to AI capabilities, safety, and governance, as well as the broader implications of such advancements on society and human understanding.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-03-27</sub>

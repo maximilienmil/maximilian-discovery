@@ -596,3 +596,66 @@
 [2026-03-28 11:37 UTC] Feed parse error (feeds.simplecast.com): text/html; charset=utf-8 is not an XML media type
 [2026-03-28 11:37 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
 [2026-03-28 11:37 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (export.arxiv.org): <unknown>:7:4: mismatched tag
+[2026-03-29 11:34 UTC] Feed parse error (firstmonday.org): text/html; charset=iso-8859-1 is not an XML media type
+[2026-03-29 11:34 UTC] Feed parse error (journals.sagepub.com): <unknown>:8:0: syntax error
+[2026-03-29 11:34 UTC] Feed parse error (dl.acm.org): <unknown>:8:0: syntax error
+[2026-03-29 11:34 UTC] Feed parse error (dl.acm.org): <unknown>:8:0: syntax error
+[2026-03-29 11:34 UTC] Feed parse error (hai.stanford.edu): <unknown>:2:4544: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (allenai.org): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:34 UTC] Feed parse error (research.ibm.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:34 UTC] Feed parse error (mila.quebec): <unknown>:70:76: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (blog.eleutherai.org): <urlopen error [Errno -2] Name or service not known>
+[2026-03-29 11:34 UTC] Feed parse error (ai.meta.com): <unknown>:4:1420: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (mistral.ai): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:34 UTC] Feed parse error (www.together.ai): <unknown>:2:1016: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (www.neelnanda.io): <unknown>:2:0: syntax error
+[2026-03-29 11:34 UTC] Feed parse error (fchollet.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (eugeneyan.com): <unknown>:13:34: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (hamel.dev): <unknown>:7:26: undefined entity
+[2026-03-29 11:34 UTC] Feed parse error (www.fast.ai): <unknown>:7:26: undefined entity
+[2026-03-29 11:34 UTC] Feed parse error (ruder.io): <unknown>:2:0: syntax error
+[2026-03-29 11:34 UTC] Feed parse error (paperswithcode.com): <unknown>:2:0: syntax error
+[2026-03-29 11:34 UTC] Feed parse error (epochai.org): <unknown>:2:1463: not well-formed (invalid token)
+[2026-03-29 11:34 UTC] Feed parse error (metr.org): <unknown>:59:98: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (gwern.net): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (aisnakeoil.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (garymarcus.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (thezvi.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (abebabirhane.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (chinai.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (thealgorithmicbridge.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (blogs.lse.ac.uk): <unknown>:5:2: mismatched tag
+[2026-03-29 11:35 UTC] Feed parse error (safiyaunoble.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (joybuolamwini.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (theconvivialsociety.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (eugenewei.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (craigmod.com): <unknown>:44:20: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (digest.bps.org.uk): <unknown>:5:50: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (astralcodexten.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (breakingsmart.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (asteriskmag.com): <unknown>:2:0: syntax error
+[2026-03-29 11:35 UTC] Feed parse error (logicmag.io): <unknown>:117:150: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (cyber.harvard.edu): <unknown>:2:102: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (www.turing.ac.uk): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (knightcolumbia.org): <unknown>:17:50: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (mattersoftech.substack.com): <unknown>:2:751: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (twimlai.com): <unknown>:2:39: not well-formed (invalid token)
+[2026-03-29 11:35 UTC] Feed parse error (feeds.buzzsprout.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:36 UTC] Feed parse error (feeds.buzzsprout.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:36 UTC] Feed parse error (feeds.simplecast.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:36 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
+[2026-03-29 11:36 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
+[2026-03-29 11:36 UTC] Feed parse error (twimlai.com): <unknown>:2:39: not well-formed (invalid token)
+[2026-03-29 11:36 UTC] Feed parse error (feeds.buzzsprout.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:36 UTC] Feed parse error (feeds.buzzsprout.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:36 UTC] Feed parse error (feeds.simplecast.com): text/html; charset=utf-8 is not an XML media type
+[2026-03-29 11:36 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)
+[2026-03-29 11:36 UTC] Feed parse error (www.youtube.com): <unknown>:3:11: not well-formed (invalid token)

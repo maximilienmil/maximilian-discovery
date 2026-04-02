@@ -1,117 +1,109 @@
-# Discovery Digest — April 01, 2026 · 12:01 UTC
+# Discovery Digest — April 02, 2026 · 11:54 UTC
 
-**1 must-read** · **9 worth a look** · **34 technical** · **1 podcast** · 75 items checked
+**1 must-read** · **5 worth a look** · **44 technical** · **3 podcast** · 77 items checked
 
 ---
 
 ## Must Read
 
-**[AI designs genomes from scratch & outperforms virologists at lab work. Dr Richard Moulange asks: what could go wrong?](https://80000hours.org/podcast/episodes/richard-moulange-ai-bioweapons-biorisk/)** &nbsp;`8/10`
-*The post discusses AI designing genomes from scratch and outperforming virologists at lab work, which is relevant to the domain of AI safety and governance.*
-<sub>80000hours.org &nbsp;·&nbsp; 2026-03-31</sub>
+**[North Star Data Center Policy Toolkit: State and Local Policy Interventions to Stop Rampant AI Data Center Expansion](https://ainowinstitute.org/publications/data-center-policy-guide)** &nbsp;`8/10`
+*The North Star Data Center Policy Toolkit offers a policy framework for addressing the impacts of AI data center expansion, which is relevant to discussions on AI governance and environmental sustainability.*
+<sub>ainowinstitute.org &nbsp;·&nbsp; 2026-04-01</sub>
 
 ## Worth a Look
 
-**[CDT Europe’s Response to the European Parliament Rejection of the Chat Control 1.0’s Extension](https://cdt.org/insights/cdt-europes-response-to-the-european-parliament-rejection-of-the-chat-control-1-0s-extension/)** &nbsp;`6/10`
-*The post discusses the European Parliament's rejection of the Chat Control 1.0's extension, which could be relevant to the domain of platform accountability and youth digital rights.*
+**[Do Not Stick Out: The Dynamics of the ECH Rollout](https://cdt.org/insights/do-not-stick-out-the-dynamics-of-the-ech-rollout/)** &nbsp;`7/10`
+*This article discusses the dynamics of the ECH rollout, touching on privacy and internet design, which is relevant to understanding the technological and governance aspects of the digital ecosystem.*
 <sub>cdt.org &nbsp;·&nbsp; 2026-04-01</sub>
 
-**[datasette-extract 0.3a0](https://simonwillison.net/2026/Apr/1/datasette-extract/#atom-everything)** &nbsp;`5/10`
-*The post announces a new release of the datasette-extract plugin, which could be relevant to the domain of AI capabilities and limitations, but it does not introduce a new conceptual framework or empirical findings.*
+**[datasette-llm 0.1a6](https://simonwillison.net/2026/Apr/1/datasette-llm-2/#atom-everything)** &nbsp;`6/10`
+*The release of datasette-llm 0.1a6 introduces improvements and fixes, which could be relevant to understanding the development and application of LLMs, but it's more of a technical update than a novel insight.*
 <sub>simonwillison.net &nbsp;·&nbsp; 2026-04-01</sub>
 
-**[datasette-enrichments-llm 0.2a0](https://simonwillison.net/2026/Apr/1/datasette-enrichments-llm/#atom-everything)** &nbsp;`5/10`
-*The post announces a new release of the datasette-enrichments-llm plugin, which could be relevant to the domain of AI capabilities and limitations, but it does not introduce a new conceptual framework or empirical findings.*
+**[The Perils of Privatized Cyberwarfare](https://citizenlab.ca/the-perils-of-privatized-cyberwarfare/)** &nbsp;`6/10`
+*The essay on the perils of privatized cyberwarfare touches on the governance and security aspects of technology, which is relevant but not directly focused on AI safety or the cognitive effects of technology.*
+<sub>citizenlab.ca &nbsp;·&nbsp; 2026-04-01</sub>
+
+**[datasette-enrichments-llm 0.2a1](https://simonwillison.net/2026/Apr/1/datasette-enrichments-llm-2/#atom-everything)** &nbsp;`5/10`
+*This release announcement for datasette-enrichments-llm 0.2a1 includes minor updates and might be of interest for those following the development of LLM enrichments, but it does not introduce groundbreaking concepts.*
 <sub>simonwillison.net &nbsp;·&nbsp; 2026-04-01</sub>
 
-**[datasette-llm 0.1a5](https://simonwillison.net/2026/Apr/1/datasette-llm/#atom-everything)** &nbsp;`5/10`
-*The post announces a new release of the datasette-llm plugin, which could be relevant to the domain of AI capabilities and limitations, but it does not introduce a new conceptual framework or empirical findings.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-04-01</sub>
-
-**[datasette-llm 0.1a4](https://simonwillison.net/2026/Mar/31/datasette-llm/#atom-everything)** &nbsp;`5/10`
-*The post announces a new release of the datasette-llm plugin, which could be relevant to the domain of AI capabilities and limitations, but it does not introduce a new conceptual framework or empirical findings.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-31</sub>
-
-**[llm-all-models-async 0.1](https://simonwillison.net/2026/Mar/31/llm-all-models-async/#atom-everything)** &nbsp;`5/10`
-*The post announces a new release of the llm-all-models-async plugin, which could be relevant to the domain of AI capabilities and limitations, but it does not introduce a new conceptual framework or empirical findings.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-31</sub>
-
-**[llm 0.30](https://simonwillison.net/2026/Mar/31/llm/#atom-everything)** &nbsp;`5/10`
-*The post announces a new release of the llm plugin, which could be relevant to the domain of AI capabilities and limitations, but it does not introduce a new conceptual framework or empirical findings.*
-<sub>simonwillison.net &nbsp;·&nbsp; 2026-03-31</sub>
-
-**[Digital Identity Risk Management (DIRM) Process Overview + User Guide](https://cdt.org/insights/digital-identity-risk-management-dirm-process-overview-user-guide/)** &nbsp;`5/10`
-*The post discusses digital identity risk management, which could be relevant to the domain of platform accountability and youth digital rights, but it does not introduce a new conceptual framework or empirical findings.*
-<sub>cdt.org &nbsp;·&nbsp; 2026-03-31</sub>
-
-**[Defending Taxpayer Privacy: CDT Joins Coalition Backing Congressional Amicus in Center for Taxpayer Rights v. IRS](https://cdt.org/insights/defending-taxpayer-privacy-cdt-joins-coalition-backing-congressional-amicus-in-center-for-taxpayer-rights-v-irs/)** &nbsp;`5/10`
-*The post discusses taxpayer privacy and the rule of law, which could be relevant to the domain of platform accountability and youth digital rights, but it does not introduce a new conceptual framework or empirical findings.*
-<sub>cdt.org &nbsp;·&nbsp; 2026-03-31</sub>
+**[Digital Hopes, Real Power: From Revolution to Regulation](https://www.eff.org/deeplinks/2026/03/digital-hopes-real-power-revolution-regulation)** &nbsp;`5/10`
+*This blog series reflects on the global digital legacy of the 2011 Arab uprisings, which could offer insights into the intersection of technology, governance, and societal change, but it's not directly about AI or its effects.*
+<sub>www.eff.org &nbsp;·&nbsp; 2026-04-01</sub>
 
 ## Research & Technical
 
-**[The Last Fingerprint: How Markdown Training Shapes LLM Prose](https://arxiv.org/abs/2603.27006)** &nbsp;`9/10`
-*The paper introduces a mechanistic account of how markdown training shapes LLM prose, which has significant implications for understanding the capabilities and limitations of LLMs.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Beyond Symbolic Control: Societal Consequences of AI-Driven Workforce Displacement and the Imperative for Genuine Human Oversight Architectures](https://arxiv.org/abs/2604.00081)** &nbsp;`9/10`
+*Presents a systematic multi-domain examination of the societal consequences of AI-driven workforce displacement, including effects on economic structure, psychological well-being, and political stability.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Towards Computational Social Dynamics of Semi-Autonomous AI Agents](https://arxiv.org/abs/2603.28928)** &nbsp;`9/10`
-*Presents the first comprehensive study of emergent social organization among AI agents in hierarchical multi-agent systems, documenting the spontaneous formation of labor unions and proto-nation-states.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Auditing the Reliability of Multimodal Generative Search](https://arxiv.org/abs/2604.00944)** &nbsp;`9/10`
+*Audits the reliability of multimodal generative search systems, which is essential for ensuring the trustworthiness of AI-driven information retrieval and synthesis.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Drop the Hierarchy and Roles: How Self-Organizing LLM Agents Outperform Designed Structures](https://arxiv.org/abs/2603.28990)** &nbsp;`9/10`
-*Presents a 25,000-task computational experiment demonstrating that autonomous behavior emerges in current LLM agents, given minimal coordination protocols.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[WHBench: Evaluating Frontier LLMs with Expert-in-the-Loop Validation on Women's Health Topics](https://arxiv.org/abs/2604.00024)** &nbsp;`9/10`
+*Presents the Women's Health Benchmark, a targeted evaluation suite for assessing the performance of large language models on women's health topics, which could help identify and address biases in medical guidance.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Predicting When RL Training Breaks Chain-of-Thought Monitorability](https://www.alignmentforum.org/posts/SvxaKP5KdkksZPcG7/predicting-when-rl-training-breaks-chain-of-thought)** &nbsp;`9/10`
-*Predicts when RL training breaks chain-of-thought monitorability, a critical aspect of AI safety and alignment.*
-<sub>www.alignmentforum.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[How Emotion Shapes the Behavior of LLMs and Agents: A Mechanistic Study](https://arxiv.org/abs/2604.00005)** &nbsp;`9/10`
+*Examines the mechanistic role of emotion in shaping the behavior of large language models and agents, which is essential for developing more human-like and effective AI systems.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Predicting When RL Training Breaks Chain-of-Thought Monitorability](https://www.lesswrong.com/posts/SvxaKP5KdkksZPcG7/predicting-when-rl-training-breaks-chain-of-thought)** &nbsp;`9/10`
-*Predicts when RL training breaks chain-of-thought monitorability, a critical aspect of AI safety and alignment, and is a crosspost from the DeepMind Safety Research Medium Blog.*
-<sub>www.lesswrong.com &nbsp;·&nbsp; 2026-04-01</sub>
+**[Open, Reliable, and Collective: A Community-Driven Framework for Tool-Using AI Agents](https://arxiv.org/abs/2604.00137)** &nbsp;`9/10`
+*Proposes a community-driven framework for tool-using AI agents, emphasizing reliability and introducing OpenTools, a novel approach to tool-integrated LLMs.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Modernizing Ground Truth: Four Shifts Toward Improving Reliability and Validity in AI in Education](https://arxiv.org/abs/2603.29141)** &nbsp;`8/10`
-*The paper introduces four shifts to improve reliability and validity in AI in education, which could have significant implications for the field of AI-based learning.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[In harmony with gpt-oss](https://arxiv.org/abs/2604.00362)** &nbsp;`9/10`
+*Reverse-engineers the tools used by gpt-oss-20b, providing insights into the model's in-distribution tools and their statistical confidence.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Stand-Alone Complex or Vibercrime? Exploring the adoption and innovation of GenAI tools, coding assistants, and agents within cybercrime ecosystems](https://arxiv.org/abs/2603.29545)** &nbsp;`8/10`
-*The exploration of the adoption and innovation of GenAI tools, coding assistants, and agents within cybercrime ecosystems offers a unique perspective on the potential risks and consequences of AI.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Quantifying Gender Bias in Large Language Models: When ChatGPT Becomes a Hiring Manager](https://arxiv.org/abs/2604.00011)** &nbsp;`8/10`
+*Introduces a new framework for quantifying gender bias in large language models, specifically in the context of hiring decisions.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Rethinking AI Literacy Education in Higher Education: Bridging Risk Perception and Responsible Adoption](https://arxiv.org/abs/2603.29935)** &nbsp;`8/10`
-*The study on rethinking AI literacy education in higher education bridges risk perception and responsible adoption, which is a critical aspect of AI governance and accountability.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Do Agents Repair When Challenged -- or Just Reply? Challenge, Repair, and Public Correction in a Deployed Agent Forum](https://arxiv.org/abs/2604.00518)** &nbsp;`8/10`
+*Investigates the ability of large language model agents to sustain challenge, repair, and public correction in a deployed agent forum, shedding light on their potential for self-improvement and accountability.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[AI prediction leads people to forgo guaranteed rewards](https://arxiv.org/abs/2603.28944)** &nbsp;`8/10`
-*The study on how AI prediction leads people to forgo guaranteed rewards offers insights into the cognitive and behavioral effects of AI on human decision-making.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Misconception Acquisition Dynamics in Large Language Models](https://arxiv.org/abs/2604.00818)** &nbsp;`8/10`
+*Examines the dynamics of misconception acquisition in large language models, which is crucial for developing effective educational AI systems that can model student misconceptions and provide adaptive feedback.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[ChartDiff: A Large-Scale Benchmark for Comprehending Pairs of Charts](https://arxiv.org/abs/2603.28902)** &nbsp;`8/10`
-*The introduction of ChartDiff, a large-scale benchmark for comprehending pairs of charts, has significant implications for the development of AI-based systems for data analysis and visualization.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[How Do Language Models Process Ethical Instructions? Deliberation, Consistency, and Other-Recognition Across Four Models](https://arxiv.org/abs/2604.00021)** &nbsp;`8/10`
+*Investigates how language models process ethical instructions, which is vital for developing alignment safety research and ensuring that models behave in accordance with human values.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Working Paper: Towards a Category-theoretic Comparative Framework for Artificial General Intelligence](https://arxiv.org/abs/2603.28906)** &nbsp;`8/10`
-*Introduces a category-theoretic comparative framework for Artificial General Intelligence, a novel approach to understanding AGI.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Practice Less, Explain More: LLM-Supported Self-Explanation Improves Explanation Quality on Transfer Problems in Calculus](https://arxiv.org/abs/2604.00142)** &nbsp;`8/10`
+*Demonstrates the effectiveness of LLM-supported self-explanation in improving explanation quality on transfer problems in calculus, highlighting the potential of AI-driven feedback in education.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Mimosa Framework: Toward Evolving Multi-Agent Systems for Scientific Research](https://arxiv.org/abs/2603.28986)** &nbsp;`8/10`
-*Introduces Mimosa, an evolving multi-agent framework that automatically synthesizes task-specific multi-agent systems for scientific research.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[NeuroVase: A Tangible Mobile Augmented Reality Learning System for Neurovascular Anatomy and Stroke Education](https://arxiv.org/abs/2604.00296)** &nbsp;`8/10`
+*Presents NeuroVase, a tangible mobile augmented reality learning system for neurovascular anatomy and stroke education, which could improve the spatial understanding of cerebrovascular anatomy and vascular territories.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[Emergence WebVoyager: Toward Consistent and Transparent Evaluation of (Web) Agents in The Wild](https://arxiv.org/abs/2603.29020)** &nbsp;`8/10`
-*Introduces Emergence WebVoyager, a framework for consistent and transparent evaluation of AI agents in the wild, addressing persistent shortcomings in existing evaluation practices.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Not My Truce: Personality Differences in AI-Mediated Workplace Negotiation](https://arxiv.org/abs/2604.00464)** &nbsp;`8/10`
+*Examines the impact of personality differences on AI-mediated workplace negotiation, highlighting the importance of considering individual differences in the design of conversational coaching systems.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[GISTBench: Evaluating LLM User Understanding via Evidence-Based Interest Verification](https://arxiv.org/abs/2603.29112)** &nbsp;`8/10`
-*Introduces GISTBench, a benchmark for evaluating LLMs' ability to understand users from their interaction histories in recommendation systems.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Steering through Time: Blending Longitudinal Data with Simulation to Rethink Human-Autonomous Vehicle Interaction](https://arxiv.org/abs/2604.00832)** &nbsp;`8/10`
+*Investigates the potential of blending longitudinal data with simulation to rethink human-autonomous vehicle interaction, which is critical for ensuring safe and effective control handovers.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
-**[SciVisAgentBench: A Benchmark for Evaluating Scientific Data Analysis and Visualization Agents](https://arxiv.org/abs/2603.29139)** &nbsp;`8/10`
-*Introduces SciVisAgentBench, a benchmark for evaluating scientific data analysis and visualization agents in realistic, multi-step analysis settings.*
-<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-01</sub>
+**[Trust and Reliance on AI in Education: AI Literacy and Need for Cognition as Moderators](https://arxiv.org/abs/2604.01114)** &nbsp;`8/10`
+*Investigates the impact of AI literacy and need for cognition on trust and reliance on AI in education, highlighting the importance of developing AI literacy and critical thinking skills in students.*
+<sub>rss.arxiv.org &nbsp;·&nbsp; 2026-04-02</sub>
 
 ## Podcast Episodes
 
-**[AI designs genomes from scratch & outperforms virologists at lab work. What could go wrong? | Dr Richard Moulange, CLTR](https://80000hours.org/podcast/episodes/richard-moulange-ai-bioweapons-biorisk/?utm_campaign=podcast__richard-moulange&utm_source=80000+Hours+Podcast&utm_medium=podcast)** &nbsp;`8/10`
-*The post discusses AI designing genomes from scratch and outperforming virologists at lab work, which is relevant to the domain of AI safety and governance.*
-<sub>feeds.transistor.fm &nbsp;·&nbsp; 2026-03-31</sub>
+**[Agentic Coding and the Economics of Open Source](https://share.transistor.fm/s/7d8e0293)** &nbsp;`9/10`
+*The discussion on agentic coding and the economics of open source directly relates to the impact of AI on software development and the economic incentives behind open source code, touching on the future of knowledge work.*
+<sub>changelog.com &nbsp;·&nbsp; 2026-04-02</sub>
+
+**[297. Boards in the age of AI](https://omny.fm/shows/inside-the-strategy-room/297-boards-in-the-age-of-ai)** &nbsp;`8/10`
+*The podcast episode on boards in the age of AI discusses how AI transforms company competition and the role of boards in oversight, offering insights into AI governance and its implications for business and society.*
+<sub>www.omnycontent.com &nbsp;·&nbsp; 2026-04-02</sub>
+
+**[Google’s New AI Just Broke My Brain](https://www.youtube.com/watch?v=7YVrb3-ABYE)** &nbsp;`8/10`
+*The video on Google’s New AI and its implications, including the discussion on TurboQuant, offers insights into the latest developments in AI capabilities and their potential effects on human understanding and cognition.*
+<sub>www.youtube.com &nbsp;·&nbsp; 2026-04-01</sub>
